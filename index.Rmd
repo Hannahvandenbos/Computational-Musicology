@@ -5,14 +5,29 @@ date: "2023-02-15"
 output: 
   flexdashboard::flex_dashboard:
     storyboard: true
-    theme: "cosmo"
+    theme: 
+      version: 4
+      bootswatch: minty
+      bg: "#D6F3D5"
+      fg: "#000000"
+      primary: "#88DB85"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
 ### This is a tab
+```{r scatter, echo=FALSE, fig.width=5, fig.height=7}
+source('first_visualisation.R')
+bubblechart
+```
+
+------------------------------------------------------------
+
+This is text
+
 ### This is another tab
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
