@@ -37,13 +37,12 @@ bubblechart <- plot_ly(CompletePlaylist, x = ~valence, y = ~energy, color = ~whi
 
 bubblechart <- bubblechart %>% layout(title = list(text = 'Valence versus energy of all songs',
                                                    font = t, yanchor = 'top'),
-                                       xaxis = list(title = list(text = 'Valence', font = 'Consolas'),
-                                                    zeroline = FALSE,
-                                                    range = c(0, 1.1),
-                                                    showgrid = FALSE),
-                                       yaxis = list(title = list(text = 'Energy', font = 'Consolas'),
-                                                    zeroline = FALSE,
-                                                    range = c(0, 1.1),
-                                                    showgrid = FALSE),
+                                      xaxis = list(title = list(text = 'Valence', font = 'Consolas'),
+                                                   zeroline = FALSE,
+                                                   range = c(0, 1.1),
+                                                   showgrid = FALSE),
+                                      yaxis = list(title = list(text = 'Energy', font = 'Consolas'),
+                                                   zeroline = FALSE,
+                                                   range = c(0, 1.1),
+                                                   showgrid = FALSE),
                                       legend = list(title=list(text=' Girl groups', font = 'Consolas', bgcolor = "#D6F3D5")))
-bubblechart
