@@ -1,5 +1,5 @@
 ---
-title: "The Secret to a Popular Girl Group"
+title: "The Secret of a Popular Girl Group"
 author: "Hannah van den Bos"
 output: 
   flexdashboard::flex_dashboard:
@@ -17,6 +17,7 @@ library(spotifyr)
 library(tidyverse)
 library(dplyr)
 library(plotly)
+library(flexdashboard)
 ```
 
 ### Introduction
@@ -24,39 +25,24 @@ library(plotly)
 <font style = "font-size: 32px"><b>The Secret to a Popular Girl Group</b></font>
 
 In the Western music industry (US, UK) girl groups are not as common as in Asian music (K-pop, J-pop). Nonetheless, some of the most popular girl groups around the world can not only be found in Korea and Japan but also in the US and the UK. 
-Based on the number of claimed total records, four of the most popular girl groups have been investigated, one from each of the aforementioned countries. These groups are the Spice Girls (UK), The Supremes (US), 2NE1 (KR) and AKB48 (JP). The 'greatest hits' of these groups are used to figure out the answer to the following questions: What do popular girl groups have in common? What makes a group stand out? What is the secret to a popular girl group?
+Based on the number of claimed total records, four of the most popular girl groups have been investigated, one from each of the aforementioned countries. These groups are the Spice Girls (UK), The Supremes (US), 2NE1 (KR) and AKB48 (JP). The 'greatest hits' of these groups are used to figure out the answer to the following questions: What do popular girl groups have in common? What makes a group stand out? What is the secret of a popular girl group?
 
 The “This is ‘group name’ “ playlist has been used for all groups, which consists of the greatest hits according to Spotify. For the research a total of 178 songs have been used. The playlist of AKB48 consists of 50 songs, the Spice Girls are represented by 42 songs, The Supremes have 50 songs and 2NE1 has 36 songs.
 
-### This is a tab
+### Girl groups prefer songs with positive energy {data-commentary-width=600}
+
 
 ```{r scatter, echo=FALSE, fig.width=8, fig.height=7}
 source('first_visualisation.R')
 bubblechart
 ```
 
-------------------------------------------------------------
-In general, most songs have a relative high valence (> 0.5) and a high energy (> 0.5). According to a arousal/valence diagram (where energy is arousal) these songs can be classified as happy or excited. For AKB48, almost all songs have a really high energy (> 0.85), whereas the valence differs from anywhere between 0.07 and 0.85. Therefore, some songs of their songs are happy/excited and others are angry/afraid/distressed. The mood of the songs with a valence in the middle is considered to be 'surprised'. Nonetheless, the high energy levels could have less to do with the mood and be a result of the fact that J-pop often comes hand-in-hand with dances instead, and thus a high danceability. These results also hold to a lesser extent for the songs of 2NE1. We will explore the danceability of the songs in the next graph.
-The songs of The Supremes do not often reach a very high energy level, this means that they are likely to be more happy/content compared to the other songs.
-Although there are not any extreme outliers, there are two songs with an extremely high energy and either an extremely high or extremely low valence. "liwake Maybe" by AKB48 has an energy of almost 1 and a valence of almost 0. This means that this song can be classified as having an annoyed mood. On the other side, "LIKE A VIRGIN" by 2NE1 has both an energy and valence of almost 1. Therefore, this can most likely be classified as excited.
-All in all, all songs could be classified somewhere along the lines of happy, where the Asian songs mostly have a really high energy.
+***
 
-### This is another tab
+<font style = "font-size: 24px"><b>The different moods of the songs</b></font>
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+<i>Do you ever get very excited or feel a boost of energy when you listen to the Spice Girls? This is due to the valence and energy of the song, which together give off a certain mood, in this case happiness! </i>
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-### Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+In general, most of the songs from the four girl groups have a high valence and energy (> 0.5), making them happy. For AKB48, almost all songs have a really high energy (> 0.85), whereas the valence differs from anywhere between 0.07 and 0.85. Thus, this group has the perfect songs to give you some energy, although one part of the spectrum consists of negative energy, the song gives off an angry/afraid/distressed mood, and the other part of positive energy, the song gives off a happy/excited mood. Nonetheless, it is important to notice that the high energy levels could have less to do with the mood and be a result of the fact that J-pop often comes hand-in-hand with an amazing choreography instead, and thus a high danceability. We will explore the danceability of the songs in the next graph. Furthermore, the same moods also hold to a lesser extent for the songs of 2NE1.
+Although there are no extreme outliers, there is one angry/annoyed song (low valence, high energy) and one very excited song (high valence, high energy). These are "liwake Maybe" by AKB48 (top left) and "LIKE A VIRGIN" by 2NE1 (top right), respectively.
+All in all, most songs are perfect to cheer you up, where the Asian songs give a boost of energy on top of that.
