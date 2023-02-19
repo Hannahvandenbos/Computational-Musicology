@@ -1,8 +1,10 @@
 PLEASE DO NOT SHOW THIS PORTFOLIO IN CLASS
 
-## The growing popularity of K-pop over the years
-K-pop has been rapidly gaining worldwide popularity in the last few years. However, it has been around since the 1990s and is often divided into four generations: the 1st-gen (mid-1990s - early 2000s), the 2nd-gen (mid-2003 - late 2000s), the 3rd-gen (2011 - 2016) and the 4th-gen (2017 onwards).
-I have composed a corpus that consists of songs from all four generations in order to find out how K-pop has evolved over the years. Is the rising popularity due to a change in the music or simply a result of social media? <br>
-I suspect that K-pop is slowly shifting more and more towards Western music genres but that danceability has always been a prominent musical feature. Nonetheless, every group has its own concept, therefore I am unsure whether musical differences will be due to the different generations or the different concepts.
+## The Secret of a Popular Girl Group
+In the Western music industry (US, UK) girl groups are not as common as in Asian music (K-pop, J-pop). Nonetheless, some of the most popular girl groups around the world can not only be found in Korea and Japan but also in the US and the UK. <br>
+Based on the number of claimed total records, I have chosen four of the most popular girl groups, one from each of the aforementioned countries. These groups are the Spice Girls (UK), The Supremes (US), 2NE1 (KR) and AKB48 (JP). I have used the “This is ‘group name’ “ playlist for all groups, which consists of the greatest hits according to Spotify. I want to compare these playlists to figure out what it is that makes these groups so popular. What do they all have in common? What makes a group stand out?
 
-The corpus consists of ±100 of the most popular songs from each generation. However, the song selection from the 1st-gen may be biased towards certain groups, since there were not as many groups back then as there are now. Furthermore, there is not a clear line between the different generations, some even speak of generation 1.5, 2.5 and 3.5. Moreover, some artists from the 1st, 2nd and 3rd generations are still producing music. Therefore, a song may belong to the 4th-gen whereas the artist is from the 1st-gen. A complicated example is the 2022 song 'Step back' from the group 'GOT the beat'. This group has members from all four generations, but the group debuted during the 4th-gen. Therefore, it would be interesting to see to which generation this song corresponds the most.
+I expect the girl groups to have quite powerful/happy songs in general. However, I am not sure about their unique features of a group that makes them stand out from the others.
+I will also be looking at the track popularity, however this may not be the most reliable feature, since The Supremes were popular before Spotify was even invented. Therefore, their songs may appear less popular on Spotify than they actually are. <br>
+Because I am using the “This is” playlists, I will not be including all songs of the groups. However, since I am only interested in their popularity, I think it makes sense to just include their greatest hits.
+
