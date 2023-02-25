@@ -7,9 +7,9 @@ output:
     theme: 
       version: 4
       bootswatch: minty
-      bg: "#D6F3D5"
+      bg: "#f4ebfe"
       fg: "#000000"
-      primary: "#88DB85"
+      primary: "#9b19f5"
 ---
 
 ```{r setup, include = FALSE}
@@ -20,7 +20,7 @@ library(plotly)
 library(flexdashboard)
 ```
 
-### Introduction
+### Introduction {data-commentary-width=600}
 
 <font style = "font-size: 32px"><b>The Secret to a Popular Girl Group</b></font>
 
@@ -28,6 +28,12 @@ In the Western music industry (US, UK) girl groups are not as common as in Asian
 Based on the number of claimed total records, four of the most popular girl groups have been investigated, one from each of the aforementioned countries. These groups are the Spice Girls (UK), The Supremes (US), 2NE1 (KR) and AKB48 (JP). The 'greatest hits' of these groups are used to figure out the answer to the following questions: What do popular girl groups have in common? What makes a group stand out? What is the secret of a popular girl group?
 
 The “This is ‘group name’ “ playlist has been used for all groups, which consists of the greatest hits according to Spotify. For the research a total of 178 songs have been used. The playlist of AKB48 consists of 50 songs, the Spice Girls are represented by 42 songs, The Supremes have 50 songs and 2NE1 has 36 songs.
+
+***
+
+```{r}
+knitr::include_url("https://open.spotify.com/embed/track/1Je1IMUlBXcx1Fz0WE7oPT?utm_source=generator", height = "100")
+```
 
 ### Girl groups prefer songs with positive energy {data-commentary-width=600}
 
