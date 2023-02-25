@@ -8,8 +8,17 @@ output:
       version: 4
       bootswatch: minty
       bg: "#f4ebfe"
-      fg: "#000000"
+      fg: "#36046d"
       primary: "#9b19f5"
+      base_font: 
+        google: Sen
+      heading_font:
+        google: Sen
+      code_font:
+        google: 
+          # arguments to sass::font_google() 
+          family: JetBrains Mono
+          local: false
 ---
 
 ```{r setup, include = FALSE}
@@ -20,19 +29,38 @@ library(plotly)
 library(flexdashboard)
 ```
 
-### Introduction {data-commentary-width=600}
+### Introduction {data-commentary-width=325}
+<font style = "font-size: 28px"><b>The Secret to a Popular Girl Group</b></font>
+<br>In the Western music industry (US, UK) girl groups are not as much of a phenomenon as in the Asian music industry (K-pop, J-pop). Nonetheless, the most popular girl groups can be found all over the world. <br>
+Based on the number of claimed total records, four of the most popular girl groups around the world have been studied. These groups are the 'Spice Girls' (UK), 'The Supremes' (US), '2NE1' (KR) and 'AKB48' (JP). The greatest hits, according to Spotify, of each group are used to gain a better insight into the following questions: What do popular girl groups have in common? What makes a group stand out? What is the secret of a popular girl group?
 
-<font style = "font-size: 32px"><b>The Secret to a Popular Girl Group</b></font>
+The “This is ‘group name’ “ playlists, created by Spotify, have been used for all groups. A total of 178 songs have been studied: 42 songs of ['Spice Girls'](https://open.spotify.com/playlist/37i9dQZF1DWWUJdr9ahsbf?si=703516584f9c4744), 50 songs of ['The Supremes'](https://open.spotify.com/playlist/37i9dQZF1DZ06evO30nCXS?si=f61e832b039d4597), 36 songs of ['2NE1'](https://open.spotify.com/playlist/37i9dQZF1DZ06evO0Jta80?si=3715e1ada03e426f) and 50 songs of ['AKB48'](https://open.spotify.com/playlist/37i9dQZF1DZ06evNZWreOe?si=1d97fca59dd34f95). These playlists may also include solo song of some members.
 
-In the Western music industry (US, UK) girl groups are not as common as in Asian music (K-pop, J-pop). Nonetheless, some of the most popular girl groups around the world can not only be found in Korea and Japan but also in the US and the UK. 
-Based on the number of claimed total records, four of the most popular girl groups have been investigated, one from each of the aforementioned countries. These groups are the Spice Girls (UK), The Supremes (US), 2NE1 (KR) and AKB48 (JP). The 'greatest hits' of these groups are used to figure out the answer to the following questions: What do popular girl groups have in common? What makes a group stand out? What is the secret of a popular girl group?
+<font style = "font-size: 18px"><b>Let's meet the groups</b></font>
 
-The “This is ‘group name’ “ playlist has been used for all groups, which consists of the greatest hits according to Spotify. For the research a total of 178 songs have been used. The playlist of AKB48 consists of 50 songs, the Spice Girls are represented by 42 songs, The Supremes have 50 songs and 2NE1 has 36 songs.
+* The <i>Spice Girls</i> is a British group that was formed in 1994 and is still active now. It consists of five members and their main genre is pop. With their 11 singles they have claimed a total of more than 100 million record sales, making them the best selling girl group.
+* On the second spot we have <i>The Supremes</i> with 50-100 million claimed record sales and 66 singles. They were known for their R&B/soul music from 1959 till 1977. Although they originally started in the US with four members, their have been ten different members in total.
+* On the other side of the world, we have the South-Korean group <i>2NE1</i>. The four members of this group were active from 2009 till 2016 and they have brought out 18 singles, resulting in 66 million claimed record sales. They explored the R&B side of K-pop.
+* Lastly, we have the biggest pop group in the world <i>AKB48</i> (J-pop). The group currently consists of 80 members, but this often changes. The members are divided over five teams that change all the time: Team A, Team K, Team B, Team 4 and Team 8. With so many members and the group being active since 2005, it is no wonder that they have the most singles: 59. This gives them over 60 million claimed record sales. 
+
+<b>Now it is time to listen to the most popular song (most listened to on Spotify) of each group!</b>
 
 ***
-
-```{r}
+<i>Wannabe by Spice girls</i>
+```{r, out.width = "100%"}
 knitr::include_url("https://open.spotify.com/embed/track/1Je1IMUlBXcx1Fz0WE7oPT?utm_source=generator", height = "100")
+```
+<br><i>You can't hurry love by The Supremes</i>
+```{r, out.width = "100%"}
+knitr::include_url("https://open.spotify.com/embed/track/1OppEieGNdItZbE14gLBEv?utm_source=generator", height = "100")
+```
+<br><i>I am the best by 2NE1</i>
+```{r, out.width = "100%"}
+knitr::include_url("https://open.spotify.com/embed/track/26EM9sZnQkLLQxixGd88KE?utm_source=generator", height = "100")
+```
+<br><i> 恋するフォーチュンクッキー by AKB48</i>
+```{r, out.width = "100%"}
+knitr::include_url("https://open.spotify.com/embed/track/37yHxMij3cpN8SdO915LUI?utm_source=generator", height = "100")
 ```
 
 ### Girl groups prefer songs with positive energy {data-commentary-width=600}
@@ -40,7 +68,7 @@ knitr::include_url("https://open.spotify.com/embed/track/1Je1IMUlBXcx1Fz0WE7oPT?
 
 ```{r scatter, echo=FALSE, fig.width=8, fig.height=7}
 source('first_visualisation.R')
-bubblechart
+fig
 ```
 
 ***
@@ -52,3 +80,14 @@ bubblechart
 In general, most of the songs from the four girl groups have a high valence and energy (> 0.5), making them happy. For AKB48, almost all songs have a really high energy (> 0.85), whereas the valence differs from anywhere between 0.07 and 0.85. Thus, this group has the perfect songs to give you some energy, although one part of the spectrum consists of negative energy, the song gives off an angry/afraid/distressed mood, and the other part of positive energy, the song gives off a happy/excited mood. Nonetheless, it is important to notice that the high energy levels could have less to do with the mood and be a result of the fact that J-pop often comes hand-in-hand with an amazing choreography instead, and thus a high danceability. We will explore the danceability of the songs in the next graph. Furthermore, the same moods also hold to a lesser extent for the songs of 2NE1.
 Although there are no extreme outliers, there is one angry/annoyed song (low valence, high energy) and one very excited song (high valence, high energy). These are "liwake Maybe" by AKB48 (top left) and "LIKE A VIRGIN" by 2NE1 (top right), respectively.
 All in all, most songs are perfect to cheer you up, where the Asian songs give a boost of energy on top of that.
+
+### Test tab {data-commentary-width=600}
+
+***  
+
+hoi
+
+***
+hoi again
+
+### Structure of dataset
