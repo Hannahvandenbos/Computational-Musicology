@@ -17,7 +17,7 @@ output:
       code_font:
         google: 
           # arguments to sass::font_google() 
-          family: JetBrains Mono
+          family: Sen
           local: false
 ---
 
@@ -33,7 +33,7 @@ library(flexdashboard)
 <font style = "font-size: 28px"><b>The Secret to a Popular Girl Group</b></font>
 <br>In the Western music industry (US, UK) girl groups are not as much of a phenomenon as in the Asian music industry (K-pop, J-pop). Nonetheless, the most popular girl groups can be found all over the world! <br>
 Based on the number of claimed total records, four of the most popular girl groups around the world have been studied. These groups are the 'Spice Girls' (UK), 'The Supremes' (US), '2NE1' (KR) and 'AKB48' (JP). The greatest hits, according to Spotify, of each group are used to gain a better insight into the following questions: What do popular girl groups have in common? What makes a group stand out? What is the secret of a popular girl group?
-<br>
+
 The “This is ‘group name’ “ playlists, created by Spotify, have been used for all groups. A total of 178 songs have been studied: 42 songs of ['Spice Girls'](https://open.spotify.com/playlist/37i9dQZF1DWWUJdr9ahsbf?si=703516584f9c4744), 50 songs of ['The Supremes'](https://open.spotify.com/playlist/37i9dQZF1DZ06evO30nCXS?si=f61e832b039d4597), 36 songs of ['2NE1'](https://open.spotify.com/playlist/37i9dQZF1DZ06evO0Jta80?si=3715e1ada03e426f) and 50 songs of ['AKB48'](https://open.spotify.com/playlist/37i9dQZF1DZ06evNZWreOe?si=1d97fca59dd34f95). These playlists may also include solo song of some members.
 
 <font style = "font-size: 18px"><b>Let's meet the groups</b></font>
@@ -77,17 +77,24 @@ fig
 
 <i>Do you ever get very excited or feel a boost of energy when you listen to the Spice Girls? This is due to the valence and energy of the song, which together give off a certain mood, in this case happiness! </i>
 
-In general, most of the songs from the four girl groups have a high valence and energy (> 0.5), making them happy. For AKB48, almost all songs have a really high energy (> 0.85), whereas the valence differs from anywhere between 0.07 and 0.85. Thus, this group has the perfect songs to give you some energy, although one part of the spectrum consists of negative energy, the song gives off an angry/afraid/distressed mood, and the other part of positive energy, the song gives off a happy/excited mood. Nonetheless, it is important to notice that the high energy levels could have less to do with the mood and be a result of the fact that J-pop often comes hand-in-hand with an amazing choreography instead, and thus a high danceability. We will explore the danceability of the songs in the next graph. Furthermore, the same moods also hold to a lesser extent for the songs of 2NE1.
-Although there are no extreme outliers, there is one angry/annoyed song (low valence, high energy) and one very excited song (high valence, high energy). These are "liwake Maybe" by AKB48 (top left) and "LIKE A VIRGIN" by 2NE1 (top right), respectively.
+In general, most of the songs from the four girl groups have a high valence and energy (> 0.5), making them happy. For AKB48, almost all songs have a really high energy (> 0.85), whereas the valence differs from anywhere between 0.07 and 0.85. Thus, this group has the perfect songs to give you some energy. More precisely, one part of the spectrum consists of negative energy, giving off an angry/afraid/distressed mood, and the other part consists of positive energy, giving off a happy/excited mood. Nonetheless, it is important to notice that the high energy levels could have less to do with the mood and be a result of the fact that J-pop often comes hand-in-hand with an amazing choreography instead, and thus a high danceability. We will explore the danceability of the songs in the next graph. Furthermore, the same moods also hold to a lesser extent for the songs of 2NE1.
+Although there are no extreme outliers, there is one particular angry/annoyed song (low valence, high energy). This is "liwake Maybe" by AKB48 (top left of the bottom right graph).
 All in all, most songs are perfect to cheer you up, where the Asian songs give a boost of energy on top of that.
 
-### Test tab {data-commentary-width=600}
+### The original version of 'I hear a symphony' by the Supremes is very similar to the orchestral version {data-commentary-width=700}
 
-***  
+<font style = "font-size: 24px"><b>Similarity between different versions</b></font>
 
-hoi
+<i>Do you ever prefer the remix of your favorite song over the original? Or maybe you like how the emotions of the singer are more clear in an acoustic version? But how different are such remakes from the original? On the right, we compare an original song with its orchestral counterpart. </i>
+
+When an artist or song is very popular, they often remake their song with another artist or turn into an acoustic version or sometimes even a remix. The same goes for The Supremes with their song 'I hear a symphony'. The Supremes have re-recorded this song with the Royal Philharmonic Orchestra, turning it into an orchestral version. In the Dynamic Time Warping graph on the right, the similarity between the two versions can be seen. There is an almost perfect straight line from the left bottom to top right, this means that the different versions are actually really close to each other.
 
 ***
-hoi again
+```{r, echo = FALSE, fig.width=7, fig.height=5.5}
+source('DynamicTimeWarpingGraph.R')
+DTW
+```
 
-### Structure of dataset
+### Conclusion
+
+Here I'll draw the general and final conclusions about what makes a girl group popular based on the graphs in the other tabs.
