@@ -1,9 +1,9 @@
 ---
 title: "The Secret of a Popular Girl Group"
-author: "Hannah van den Bos"
 output: 
   flexdashboard::flex_dashboard:
     storyboard: true
+    self_contained: false
     theme: 
       version: 4
       bootswatch: minty
@@ -27,43 +27,115 @@ library(tidyverse)
 library(dplyr)
 library(plotly)
 library(flexdashboard)
+source('self_similarity_matrix.R')
+```
+Chroma and timbre {data-orientation=rows data-navmenu="Visualisations"}
+========================================================
+
+Column {.sidebar data-width=400}
+--------------------------------------------------------
+<font style = "font-size: 28px"><b>Chroma and timbre</b></font>
+
+On the right, the chroma and timbre of the most popular song from each group are shown in the form of a self-similarity matrices. <br>
+The four songs are:
+
+* ['Wannabe' - Spice Girls](https://open.spotify.com/track/1Je1IMUlBXcx1Fz0WE7oPT?si=309c00c5834546eb)
+* ['You can't hurry love' - The Supremes](https://open.spotify.com/track/1OppEieGNdItZbE14gLBEv?si=2e75ee9ee66f488f)
+* ['I am the best' - 2NE1](https://open.spotify.com/track/26EM9sZnQkLLQxixGd88KE?si=ba22007f076a4f3c)
+* ['恋するフォーチュンクッキー' - AKB48](https://open.spotify.com/track/37yHxMij3cpN8SdO915LUI?si=165ca7a20b81414a)
+
+For the chroma matrices, Euclidean normalisation with cosine distance and the root square mean was used. For the timbre matrices, the Euclidean distance with the mean has been used. A darker purple means more similarity and yellow represents novelty.
+
+<i>Make sure to match the graphs with the conclusions by choosing the correct tab.</i>
+
+Row {.tabset data-height=650}
+------------------------------------------------------------------
+### 'Wannabe' - Spice Girls
+```{r, echo = FALSE, fig.width=7, fig.height=5.5}
+wannabe_graph
 ```
 
-### Introduction {data-commentary-width=325}
+### 'You can't hurry love' - The Supremes
+```{r, echo = FALSE, fig.width=7, fig.height=5.5}
+Canthurrylove_graph
+```
+
+### 'I am the best' - 2NE1
+```{r, echo = FALSE, fig.width=7, fig.height=5.5}
+Iamthebest_graph
+```
+
+### '恋するフォーチュンクッキー' -AKB48
+```{r, echo = FALSE, fig.width=7, fig.height=5.5}
+japanese_graph
+```
+
+Row {.tabset data-height=350}
+------------------------------------------------------------------
+### 'Wannabe' findings
+In the chroma matrix the structure of the song can roughly be seen. When listening to the song you can follow along and find the couplets and chorus. However, there are no very clear repetition in the matrix that you may expect when listening to the song. In the timbre matrix there is one yellow line that stands out at around two minutes. When listening to the song it becomes clear that this is the very short part where there is no background music. Lastly, at the end you can also see some a bit thicker yellowish line. This is the outro of the song that is just instrumental.
+
+### 'You can't hurry love' findings
+Surprisingly, the repetition of the chorus is not as clear in the chroma matrix, although this sounds the same for a listener. A more clear repetition is visible between 35-60 s and 75-100 s. This period indicates the second part of the chorus. This is also quite unexpected since the rhythm stays the same but the lyrics change and still this is more visible than the chorus which is exactly the same every time. In the timbre matrix a yellow line can be seen at around two minutes, this indicates novelty. In this case, the novelty comes from the transition to the bridge, where a clear distinction in the music can be heard as well. However, after the bridge the song ends quite homogeneous. 
+
+### 'I am the best' findings
+In the chroma matrix there is not a clear checkerboard pattern that indicates the structure, there is not a lot of homogeneity. This is further confirmed by looking at the timbre matrix. As can be seen there, this song has a lot of novelty. Even when the lyrics are repeated, the background music changes which makes it seem as completely different according to the graph. Furthermore, there are big contrasts between some parts. For instance, the part between 70s and 80s is quite different from the parts before and after that.
+
+### '恋するフォーチュンクッキー' findings
+For this song, the chroma and timbre matrices are very similar. The chorus and pre-chorus can be easily found, around 60s and 150s is the pre-chorus and 75-120s, 165-210s and 220-265s indicate the chorus. The yellow lines that indicate 'novelty' are almost everytime a musical part. 
+
+### General discussion
+In general, it is interesting to see that the songs from the US and the UK are both a little under three minutes and have a clear start of the bridge at around two minutes. An interesting contradiction is that 'You can't hurry love' is quite homogeneous, whereas the Korean song has a lot of 'new' parts. Furthermore, the song by AKB48 has the clearest repetitions of the chorus but 'Wannabe' seems to have a lot of really small repetitions.
+
+Introduction {data-orientation=rows}
+=========================================================
+
+Column {.sidebar data-width=480}
+--------------------------------------------------------
 <font style = "font-size: 28px"><b>The Secret to a Popular Girl Group</b></font>
-<br>In the Western music industry (US, UK) girl groups are not as much of a phenomenon as in the Asian music industry (K-pop, J-pop). Nonetheless, the most popular girl groups can be found all over the world! <br>
+
+In the Western music industry (US, UK) girl groups are not as much of a phenomenon as in the Asian music industry (K-pop, J-pop). Nonetheless, the most popular girl groups can be found all over the world!
+
 Based on the number of claimed total records, four of the most popular girl groups around the world have been studied. These groups are the 'Spice Girls' (UK), 'The Supremes' (US), '2NE1' (KR) and 'AKB48' (JP). The greatest hits, according to Spotify, of each group are used to gain a better insight into the following questions: What do popular girl groups have in common? What makes a group stand out? What is the secret of a popular girl group?
 
-The “This is ‘group name’ “ playlists, created by Spotify, have been used for all groups. A total of 178 songs have been studied: 42 songs of ['Spice Girls'](https://open.spotify.com/playlist/37i9dQZF1DWWUJdr9ahsbf?si=703516584f9c4744), 50 songs of ['The Supremes'](https://open.spotify.com/playlist/37i9dQZF1DZ06evO30nCXS?si=f61e832b039d4597), 36 songs of ['2NE1'](https://open.spotify.com/playlist/37i9dQZF1DZ06evO0Jta80?si=3715e1ada03e426f) and 50 songs of ['AKB48'](https://open.spotify.com/playlist/37i9dQZF1DZ06evNZWreOe?si=1d97fca59dd34f95). These playlists may also include solo song of some members.
+The “This is ‘group name’ “ playlists, created by Spotify, have been used for all groups. A total of 178 songs have been studied: 42 songs of 'Spice Girls', 50 songs of 'The Supremes', 36 songs of'2NE1' and 50 songs of 'AKB48'. <br>These playlists may also include solo songs of some members.
 
-<font style = "font-size: 18px"><b>Let's meet the groups</b></font>
+<b>On the right you can meet the groups!</b>
 
-* The <i>Spice Girls</i> is a British group that was formed in 1994 and is still active now. It consists of five members and their main genre is pop. With their 11 singles they have claimed a total of more than 100 million record sales, making them the best selling girl group.
-* On the second spot we have <i>The Supremes</i> with 50-100 million claimed record sales and 66 singles. They were known for their R&B/soul music from 1959 till 1977. Although they originally started in the US with four members, their have been ten different members in total.
-* On the other side of the world, we have the South-Korean group <i>2NE1</i>. The four members of this group were active from 2009 till 2016 and they have brought out 18 singles, resulting in 66 million claimed record sales. They explored the R&B side of K-pop.
-* Lastly, we have the biggest pop group in the world <i>AKB48</i> (J-pop). The group currently consists of 80 members, but this often changes. The members are divided over five teams that change all the time: Team A, Team K, Team B, Team 4 and Team 8. With so many members and the group being active since 2005, it is no wonder that they have the most singles: 59. This gives them over 60 million claimed record sales. 
+Column {data-width=260}
+------------------------------------------------------------------
+### Spice Girls
+The <i>Spice Girls</i> is a British group that was formed in 1994 with five members. Their main genre is pop. With their 11 singles they have claimed a total of more than 100 million record sales, making them the best selling girl group in the world.
 
-<b>Now it is time to listen to the most popular song (most listened to on Spotify) of each group!</b>
+<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWUJdr9ahsbf?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 
-***
-<i>Wannabe by Spice girls</i>
+### The Supremes
+<i>The Supremes</i> comes in second place with 66 singles and 50-100 million claimed record sales. They were known for their R&B/ soul music from 1959 till 1977. They originally started with four members, but their have been ten different members in total.
+
+<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO30nCXS?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
+
+Column
+------------------------------------------------
+### 2NE1
+Turning to Asia, we have the South-Korean group <i>2NE1</i>. The four members of this group were active from 2009 till 2016 and they have brought out 18 singles, resulting in 66 million claimed record sales. They explored the R&B side of K-pop.
+
+<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO0Jta80?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 ```{r, out.width = "100%"}
-knitr::include_url("https://open.spotify.com/embed/track/1Je1IMUlBXcx1Fz0WE7oPT?utm_source=generator", height = "100")
+#knitr::include_url("https://open.spotify.com/embed/track/26EM9sZnQkLLQxixGd88KE?utm_source=generator", height = "100")
 ```
-<br><i>You can't hurry love by The Supremes</i>
+### AKB48
+Lastly, we have the biggest pop group in the world <i>AKB48</i>. The group currently consists of 80 members divided over 5 teams. The group has been active since 2005 and produced 59 singles, giving them over 60 million claimed record sales.
+
+<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evNZWreOe?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 ```{r, out.width = "100%"}
-knitr::include_url("https://open.spotify.com/embed/track/1OppEieGNdItZbE14gLBEv?utm_source=generator", height = "100")
-```
-<br><i>I am the best by 2NE1</i>
-```{r, out.width = "100%"}
-knitr::include_url("https://open.spotify.com/embed/track/26EM9sZnQkLLQxixGd88KE?utm_source=generator", height = "100")
-```
-<br><i> 恋するフォーチュンクッキー by AKB48</i>
-```{r, out.width = "100%"}
-knitr::include_url("https://open.spotify.com/embed/track/37yHxMij3cpN8SdO915LUI?utm_source=generator", height = "100")
+#knitr::include_url("https://open.spotify.com/embed/track/37yHxMij3cpN8SdO915LUI?utm_source=generator", height = "100")
 ```
 
-### Girl groups prefer songs with positive energy {data-commentary-width=600}
+Girl groups prefer songs with positive energy {data-navmenu="Visualisations"}
+=========================================================
+
+Column
+--------------------------------------------------------
 
 
 ```{r scatter, echo=FALSE, fig.width=8, fig.height=7}
@@ -71,8 +143,8 @@ source('first_visualisation.R')
 fig
 ```
 
-***
-
+Column {data-width=525}
+------------------------------------------------------------
 <font style = "font-size: 24px"><b>The different moods of the songs</b></font>
 
 <i>Do you ever get very excited or feel a boost of energy when you listen to the Spice Girls? This is due to the valence and energy of the song, which together give off a certain mood, in this case happiness! </i>
@@ -81,20 +153,27 @@ In general, most of the songs from the four girl groups have a high valence and 
 Although there are no extreme outliers, there is one particular angry/annoyed song (low valence, high energy). This is "liwake Maybe" by AKB48 (top left of the bottom right graph).
 All in all, most songs are perfect to cheer you up, where the Asian songs give a boost of energy on top of that.
 
-### The original version of 'I hear a symphony' by the Supremes is very similar to the orchestral version {data-commentary-width=700}
+DTW {data-navmenu="Visualisations"}
+========================================================
 
+Column 
+--------------------------------------------------------
 <font style = "font-size: 24px"><b>Similarity between different versions</b></font>
 
 <i>Do you ever prefer the remix of your favorite song over the original? Or maybe you like how the emotions of the singer are more clear in an acoustic version? But how different are such remakes from the original? On the right, we compare an original song with its orchestral counterpart. </i>
 
 When an artist or song is very popular, they often remake their song with another artist or turn into an acoustic version or sometimes even a remix. The same goes for The Supremes with their song 'I hear a symphony'. The Supremes have re-recorded this song with the Royal Philharmonic Orchestra, turning it into an orchestral version. In the Dynamic Time Warping graph on the right, the similarity between the two versions can be seen. There is an almost perfect straight line from the left bottom to top right, this means that the different versions are actually really close to each other.
 
-***
+Column {data-width=400}
+------------------------------------------------------------------------
 ```{r, echo = FALSE, fig.width=7, fig.height=5.5}
 source('DynamicTimeWarpingGraph.R')
 DTW
 ```
 
-### Conclusion
+Conclusion
+============================================================
+Column
+--------------------------------------------------------
 
 Here I'll draw the general and final conclusions about what makes a girl group popular based on the graphs in the other tabs.

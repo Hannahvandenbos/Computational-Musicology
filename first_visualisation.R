@@ -82,6 +82,7 @@ m <- list(
   t = 75
   #pad = 4
 )
+
 fig <- subplot(fig1, fig2, fig3, fig4, nrows = 2, shareY = TRUE, shareX = TRUE, titleX = FALSE,
                titleY = FALSE, margin = 0.02)
 fig <- fig %>%layout(title = list(text = "Valence vs energy as mood indicator", font = list(size = 31), yanchor = 'bottom'),
