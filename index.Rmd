@@ -43,7 +43,7 @@ The key(s) of a song can, to a certain extent, give off emotions. The evaluation
 
 *Make sure to match the graphs with the evaluations by choosing the correct tab. *
 
-Row {.tabset}
+Row {.tabset data-height=700}
 -------------------------------------------------------
 ### *Spice Girls* Key Histogram
 ```{r, echo = FALSE, fig.width=10, fig.height=4.5}
@@ -71,7 +71,6 @@ AKB48_keys
 
 Row {.tabset}
 ---------------------------------------------------------
-
 ### General Evaluation
 The minor keys have almost no place in the songs from the four girl groups. This means that their songs mostly evoke positive energy. Furthermore, the D-major and Eb-major are very prominent in all playlists. These two keys have *'Triumphant, Victorious War-Cries'* and *'Cruel, Hard, Yet Full of Devotion'*, respectively as emotive expressions. The emotions of D-major seem to correspond with the high valence, high energy found in the mood indicator graph and the Eb-major key corresponds with the mid-valence, high energy results. 
 
