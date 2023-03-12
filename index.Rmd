@@ -43,7 +43,7 @@ The key(s) of a song can, to a certain extent, give off emotions. The evaluation
 
 *Make sure to match the graphs with the evaluations by choosing the correct tab. *
 
-Row {.tabset data-height = 600}
+Row {.tabset}
 -------------------------------------------------------
 ### *Spice Girls* Key Histogram
 ```{r, echo = FALSE, fig.width=10, fig.height=4.5}
@@ -69,7 +69,7 @@ source('keygrams.R')
 AKB48_keys
 ```
 
-Row {.tabset data-height = 400}
+Row {.tabset}
 ---------------------------------------------------------
 
 ### General Evaluation
@@ -235,6 +235,7 @@ tempo_plot
 
 Row
 ---------------------------------------------------------------
+There will come an evaluation here.
 <!-- ### Spice Girls -->
 <!-- ```{r, echo=FALSE, fig.width=5, fig.height=3} -->
 <!-- source('first_visualisation.R') -->
