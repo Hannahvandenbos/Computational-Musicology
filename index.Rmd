@@ -29,63 +29,63 @@ library(plotly)
 library(flexdashboard)
 source('self_similarity_matrix.R')
 ```
-Chroma and timbre {data-orientation=rows data-navmenu="Visualisations"}
-========================================================
+
+Key Histograms {data-navmenu="Full Repertoire" data-orientation=rows}
+==================================================================
 
 Column {.sidebar data-width=400}
 --------------------------------------------------------
-<font style = "font-size: 28px"><b>Chroma and timbre</b></font>
+<font style = "font-size: 28px"><b>Key Histograms</b></font>
 
-On the right, the chroma and timbre of the most popular song from each group are shown in the form of a self-similarity matrices. <br>
-The four songs are:
+The histograms on the right show the number of key occurrences of all songs per group. Each song has been split in roughly ten time frames. Per time frame, the most prominent key has been chosen. This has been determined by using the Manhattan normalisation with the Aitchison distance in combination with the mean. However, it is important to keep in mind that Spotify's analysis may not always be accurate.
 
-* ['Wannabe' - Spice Girls](https://open.spotify.com/track/1Je1IMUlBXcx1Fz0WE7oPT?si=309c00c5834546eb)
-* ['You can't hurry love' - The Supremes](https://open.spotify.com/track/1OppEieGNdItZbE14gLBEv?si=2e75ee9ee66f488f)
-* ['I am the best' - 2NE1](https://open.spotify.com/track/26EM9sZnQkLLQxixGd88KE?si=ba22007f076a4f3c)
-* ['恋するフォーチュンクッキー' - AKB48](https://open.spotify.com/track/37yHxMij3cpN8SdO915LUI?si=165ca7a20b81414a)
+The key(s) of a song can, to a certain extent, give off emotions. The evaluations are based on ['Musical Key Characteristics and Emotions by Jared H.'](https://ledgernote.com/blog/interesting/musical-key-characteristics-emotions/).
 
-For the chroma matrices, Euclidean normalisation with cosine distance and the root square mean was used. For the timbre matrices, the Euclidean distance with the mean has been used. A darker purple means more similarity and yellow represents novelty.
+*Make sure to match the graphs with the evaluations by choosing the correct tab. *
 
-<i>Make sure to match the graphs with the conclusions by choosing the correct tab.</i>
-
-Row {.tabset data-height=650}
-------------------------------------------------------------------
-### 'Wannabe' - Spice Girls
-```{r, echo = FALSE, fig.width=7, fig.height=5.5}
-wannabe_graph
+Row {.tabset data-height = 600}
+-------------------------------------------------------
+### *Spice Girls* Key Histogram
+```{r, echo = FALSE, fig.width=10, fig.height=4.5}
+source('keygrams.R')
+SpiceGirls_keys
 ```
 
-### 'You can't hurry love' - The Supremes
-```{r, echo = FALSE, fig.width=7, fig.height=5.5}
-Canthurrylove_graph
+### *The Supremes* Key Histogram
+```{r, echo = FALSE, fig.width=10, fig.height=4.5}
+source('keygrams.R')
+TheSupremes_keys
 ```
 
-### 'I am the best' - 2NE1
-```{r, echo = FALSE, fig.width=7, fig.height=5.5}
-Iamthebest_graph
+### *2NE1* Key Histogram
+```{r, echo = FALSE, fig.width=10, fig.height=4.5}
+source('keygrams.R')
+twoNE1_keys
 ```
 
-### '恋するフォーチュンクッキー' -AKB48
-```{r, echo = FALSE, fig.width=7, fig.height=5.5}
-japanese_graph
+### *AKB48* Key Histogram
+```{r, echo = FALSE, fig.width=10, fig.height=4.5}
+source('keygrams.R')
+AKB48_keys
 ```
 
-Row {.tabset data-height=350}
-------------------------------------------------------------------
-### 'Wannabe' findings
-In the chroma matrix the structure of the song can roughly be seen. When listening to the song you can follow along and find the couplets and chorus. However, there are no very clear repetition in the matrix that you may expect when listening to the song. In the timbre matrix there is one yellow line that stands out at around two minutes. When listening to the song it becomes clear that this is the very short part where there is no background music. Lastly, at the end you can also see some a bit thicker yellowish line. This is the outro of the song that is just instrumental.
+Row {.tabset data-height = 400}
+---------------------------------------------------------
 
-### 'You can't hurry love' findings
-Surprisingly, the repetition of the chorus is not as clear in the chroma matrix, although this sounds the same for a listener. A more clear repetition is visible between 35-60 s and 75-100 s. This period indicates the second part of the chorus. This is also quite unexpected since the rhythm stays the same but the lyrics change and still this is more visible than the chorus which is exactly the same every time. In the timbre matrix a yellow line can be seen at around two minutes, this indicates novelty. In this case, the novelty comes from the transition to the bridge, where a clear distinction in the music can be heard as well. However, after the bridge the song ends quite homogeneous. 
+### General Evaluation
+The minor keys have almost no place in the songs from the four girl groups. This means that their songs mostly evoke positive energy. Furthermore, the D-major and Eb-major are very prominent in all playlists. These two keys have *'Triumphant, Victorious War-Cries'* and *'Cruel, Hard, Yet Full of Devotion'*, respectively as emotive expressions. The emotions of D-major seem to correspond with the high valence, high energy found in the mood indicator graph and the Eb-major key corresponds with the mid-valence, high energy results. 
 
-### 'I am the best' findings
-In the chroma matrix there is not a clear checkerboard pattern that indicates the structure, there is not a lot of homogeneity. This is further confirmed by looking at the timbre matrix. As can be seen there, this song has a lot of novelty. Even when the lyrics are repeated, the background music changes which makes it seem as completely different according to the graph. Furthermore, there are big contrasts between some parts. For instance, the part between 70s and 80s is quite different from the parts before and after that.
+### *Spice Girls* Evaluation
+In the 'This is Spice Girls' playlist, almost all major keys occur more often than the minor keys. In general, the major keys evoke positive emotions. The most dominant key is the D-major key, closely followed by Eb-major. The D-major key's emotive expression is *'Triumphant, Victorious War-Cries'* and Eb-major's emotive expressions consists of *'Cruel, Hard, Yet Full of Devotion'*. This suggests powerful messages with a happy tone.
 
-### '恋するフォーチュンクッキー' findings
-For this song, the chroma and timbre matrices are very similar. The chorus and pre-chorus can be easily found, around 60s and 150s is the pre-chorus and 75-120s, 165-210s and 220-265s indicate the chorus. The yellow lines that indicate 'novelty' are almost everytime a musical part. 
+### *The Supremes* Evaluation
+In the songs of *The Supremes* major keys are clearly preferred over minor keys, with B-major being the absolute winner. This key has the following emotive expressions: *'Harsh, Strong, Wild, Rage'*. This may be considered as low valence, high energy in the mood indicator graph.
 
-### General discussion
-In general, it is interesting to see that the songs from the US and the UK are both a little under three minutes and have a clear start of the bridge at around two minutes. An interesting contradiction is that 'You can't hurry love' is quite homogeneous, whereas the Korean song has a lot of 'new' parts. Furthermore, the song by AKB48 has the clearest repetitions of the chorus but 'Wannabe' seems to have a lot of really small repetitions.
+### *2NE1* Evaluation
+*2NE1* seems to have a really strong preference for its keys. There is a clear distinction between their top 3 keys (Bb-major, Eb-major and D-major) and the other keys. The emotive expressions of Bb-major, Eb-major and D-major are *'Joyful, Quaint, Cheerful'*, *'Cruel, Hard, Yet Full of Devotion'* and *'Triumphant, Victorious War-Cries'*, respectively. This suggests quite joyful songs in general with sometimes a more daunting emotion.
+
+### *AKB48* Evaluation
+In the 'This is AKB48' playlist, the winner is the Eb-major key, followed by the Bb-major, B-major and D-major keys. The Eb-major key expresses *'Cruel, Hard, Yet Full of Devotion'*. This may correspond with mid-valence, hgih energy in the mood indicator graph.
 
 Introduction {data-orientation=rows}
 =========================================================
@@ -107,53 +107,221 @@ Column {data-width=260}
 ### Spice Girls
 The <i>Spice Girls</i> is a British group that was formed in 1994 with five members. Their main genre is pop. With their 11 singles they have claimed a total of more than 100 million record sales, making them the best selling girl group in the world.
 
-<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWUJdr9ahsbf?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
+<!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWUJdr9ahsbf?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe> -->
 
 ### The Supremes
 <i>The Supremes</i> comes in second place with 66 singles and 50-100 million claimed record sales. They were known for their R&B/ soul music from 1959 till 1977. They originally started with four members, but their have been ten different members in total.
 
-<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO30nCXS?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
+<!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO30nCXS?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe> -->
 
 Column
 ------------------------------------------------
 ### 2NE1
 Turning to Asia, we have the South-Korean group <i>2NE1</i>. The four members of this group were active from 2009 till 2016 and they have brought out 18 singles, resulting in 66 million claimed record sales. They explored the R&B side of K-pop.
 
-<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO0Jta80?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
+<!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO0Jta80?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe> -->
 ```{r, out.width = "100%"}
 #knitr::include_url("https://open.spotify.com/embed/track/26EM9sZnQkLLQxixGd88KE?utm_source=generator", height = "100")
 ```
 ### AKB48
 Lastly, we have the biggest pop group in the world <i>AKB48</i>. The group currently consists of 80 members divided over 5 teams. The group has been active since 2005 and produced 59 singles, giving them over 60 million claimed record sales.
 
-<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evNZWreOe?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
+<!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evNZWreOe?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe> -->
 ```{r, out.width = "100%"}
 #knitr::include_url("https://open.spotify.com/embed/track/37yHxMij3cpN8SdO915LUI?utm_source=generator", height = "100")
 ```
-
-Girl groups prefer songs with positive energy {data-navmenu="Visualisations"}
+Background {data-orientation=rows}
 =========================================================
+
+Row {Data-height = 350}
+----------------------------------------------------
+
+### *Spice Girls*
+
+```{r}
+valueBox("#1 in world", icon = "fa-trophy", color = "#e60049")
+```
+
+### *The Supremes*
+
+```{r}
+valueBox("12 No.1 singles", icon = "fas fa-music", color = "#0bb4ff")
+```
+
+### *2NE1*
+
+```{r}
+valueBox("3 languages", icon = "fa-language", color =  "#ffa300")
+```
+
+### *AKB48*
+```{r}
+valueBox("> 80 members", icon = "fa-group", color =  "#9b19f5")
+```
+
+Row {data-height=300}
+-------------------------------------------------------------
+
+### What does it mean to be a popular girl group?
+
+The list of the best-selling girl groups worldwide has been in 2017, and thus may be a bit outdated. Furthermore, the sources that were used to create the list may not be reliable. Nonetheless, for this portfolio, the list has only been used as a rough indication to establish what a popular girl group is. The four chosen groups are all the best-selling in their own country, however, it is not the top 4 globally. Although <i>Spice Girls</i> and <i>The Supremes</i> are number 1 and 2 respectively, <i>2NE1</i> takes the fourth place worldwide and <i>AKB48</i> comes sixth globally. The complete top 6 can be found below and the full list can be found [here](https://en.wikipedia.org/wiki/List_of_best-selling_girl_groups).
+
+**Top 10 best-selling girl groups:**
+
+```{r}
+best_selling <- data.frame(Group=c('Spice Girls', 'The Supremes', 'The Andrews Sisters', '2NE1',
+                                   'TLC', 'AKB48'),
+                 Country=c('UK', 'US', 'US', 'KR', 'US', 'JP'),
+                 Records=c('> 100 million', '50-100 million', '> 75 million', '> 66 million', 
+                           '> 65 million', '> 60 million'))
+
+knitr::kable(best_selling)
+```
+
+### Popularity of the songs
+A popular group does not automatically mean that all their songs are popular as well. It is often the case that the group has one especially popular song, whereas the rest are not as popular. For instance, 'Wannabe' by the *Spice Girls* is the best-selling girl group single, so this presumably is a big reason why the group is the best-selling girl group as well. In this portfolio, I have therefore chosen to focus on the most popular song of each group. The analysis of these songs can be found under "Biggest Hits" and the analysis of the full playlists per group can be found under "Full Repertoire". The most popular song is based on Spotify's track popularity. The values can be found in the table below, but keep in mind that the values should only be compared between songs of one group. Since, for instance, *The Supremes* was popular when Spotify was not even invented, which may influence the track popularity.
+
+**Most and least popular songs**
+
+```{r}
+songs <- matrix(c('Wannabe', 77, 'A Mind Of Its Own', 26, "You Can't Hurry Love", 71, 
+'Let Me Go The Right Way', 16, 'I Am The Best', 62, 'LIKE A VIRGIN', 24, '恋するフォーチュンクッキー', 46, 'ハート型ウイルス(TeamA)', 26), ncol=4, byrow=TRUE)
+
+#define column names and row names of matrix
+colnames(songs) <- c('Most popular', 'Popularity', 'Least popular', 'Popularity')
+rownames(songs) <- c('Spice Girls', 'The Supremes', '2NE1', 'AKB48')
+
+#convert matrix to table 
+songs <- as.table(songs)
+
+knitr::kable(songs)
+```
+
+Girl Groups Prefer Songs With Positive Energy {data-navmenu="Full Repertoire"}
+=========================================================
+
+Column {.sidebar data-width=500}
+------------------------------------------------------------
+<font style = "font-size: 20px"><b>The different moods of the songs</b></font>
+
+*The graph on the right displays the valence, energy and danceability of the songs from the four girl groups. By combining valence and energy one can get an indication of the mood that is evoked by the song. Furthermore, the size shows the danceability. Since K-pop and J-pop are well known for their choreography, it could be interesting to see whether there is a correlation between energy and danceability.*
+
+In general, most of the songs from the four girl groups evoke positive energy since they have a high valence and energy (> 0.5). For the *Spice Girls* and *The Supremes* the energy is mid-high, whereas the Asian songs have a really high energy level. Although one might expect that the high energy is due to the fact that K-pop and J-pop involve a lot of dancing, the danceability does not particularly become evident from the graph; there are quite some songs with high energy and low danceability. Furthermore, the *Spice Girls* seems to have the highest danceability overall. <br>
+Apart from *AKB48*, the songs range over the complete valence spectrum. This means that the moods can be anything from happy/excited (high valence) to angry/afraid/distressed (low valence) to content (mid valence). *AKB48*'s songs do not have a very high or low valence, except for one outlier. This song, "Liwake Maybe", has a very low valence, very high energy and quite a low danceability. Therefore, this song is presumably sad or angry.
 
 Column
 --------------------------------------------------------
 
-
-```{r scatter, echo=FALSE, fig.width=8, fig.height=7}
+### Valance, Energy and Danceability as Mood Indicator
+```{r scatter, echo=FALSE, fig.width=12.5, fig.height=2}
 source('first_visualisation.R')
 fig
 ```
 
-Column {data-width=525}
+Tempo {data-navmenu="Full Repertoire" data-orientation=rows}
+=========================================================
+
+Column {.sidebar data-width=400}
 ------------------------------------------------------------
-<font style = "font-size: 24px"><b>The different moods of the songs</b></font>
+<font style = "font-size: 20px"><b>Tempo</b></font>
 
-<i>Do you ever get very excited or feel a boost of energy when you listen to the Spice Girls? This is due to the valence and energy of the song, which together give off a certain mood, in this case happiness! </i>
+Row
+--------------------------------------------------------------
+### Tempo Distribution of the Songs
+```{r, echo=FALSE, fig.width=12.5, fig.height=3}
+source('first_visualisation.R')
+tempo_plot
+```
 
-In general, most of the songs from the four girl groups have a high valence and energy (> 0.5), making them happy. For AKB48, almost all songs have a really high energy (> 0.85), whereas the valence differs from anywhere between 0.07 and 0.85. Thus, this group has the perfect songs to give you some energy. More precisely, one part of the spectrum consists of negative energy, giving off an angry/afraid/distressed mood, and the other part consists of positive energy, giving off a happy/excited mood. Nonetheless, it is important to notice that the high energy levels could have less to do with the mood and be a result of the fact that J-pop often comes hand-in-hand with an amazing choreography instead, and thus a high danceability. We will explore the danceability of the songs in the next graph. Furthermore, the same moods also hold to a lesser extent for the songs of 2NE1.
-Although there are no extreme outliers, there is one particular angry/annoyed song (low valence, high energy). This is "liwake Maybe" by AKB48 (top left of the bottom right graph).
-All in all, most songs are perfect to cheer you up, where the Asian songs give a boost of energy on top of that.
+Row
+---------------------------------------------------------------
+<!-- ### Spice Girls -->
+<!-- ```{r, echo=FALSE, fig.width=5, fig.height=3} -->
+<!-- source('first_visualisation.R') -->
+<!-- sg_mode -->
+<!-- ``` -->
 
-DTW {data-navmenu="Visualisations"}
+<!-- ### The Supremes -->
+<!-- ```{r, echo=FALSE, fig.width=5, fig.height=3} -->
+<!-- source('first_visualisation.R') -->
+<!-- ts_mode -->
+<!-- ``` -->
+
+<!-- Row -->
+<!-- ----------------------------------------------------------------- -->
+
+<!-- ### 2NE1 -->
+<!-- ```{r, echo=FALSE, fig.width=5, fig.height=3} -->
+<!-- source('first_visualisation.R') -->
+<!-- ne_mode -->
+<!-- ``` -->
+
+<!-- ### AKB48 -->
+<!-- ```{r, echo=FALSE, fig.width=5, fig.height=3} -->
+<!-- source('first_visualisation.R') -->
+<!-- ak_mode -->
+<!-- ``` -->
+
+
+<!-- Key Histograms {data-navmenu="Full Repertoire" data-orientation=rows} -->
+<!-- ================================================================== -->
+
+<!-- Column {.sidebar data-width=400} -->
+<!-- -------------------------------------------------------- -->
+<!-- <font style = "font-size: 28px"><b>Key Histograms</b></font> -->
+
+<!-- The histograms on the right show the number of key occurrences of all songs per group. Each song has been split in roughly ten time frames. Per time frame, the most prominent key has been chosen. This has been determined by using the Manhattan normalisation with the Aitchison distance in combination with the mean. However, it is important to keep in mind that Spotify's analysis may not always be accurate. -->
+
+<!-- The key(s) of a song can, to a certain extent, give off emotions. The evaluations are based on ['Musical Key Characteristics and Emotions by Jared H.'](https://ledgernote.com/blog/interesting/musical-key-characteristics-emotions/). -->
+
+<!-- *Make sure to match the graphs with the evaluations by choosing the correct tab. * -->
+
+<!-- Row {.tabset data-height = 600} -->
+<!-- ------------------------------------------------------- -->
+<!-- ### *Spice Girls* Key Histogram -->
+<!-- ```{r, echo = FALSE, fig.width=10, fig.height=4.5} -->
+<!-- source('keygrams.R') -->
+<!-- SpiceGirls_keys -->
+<!-- ``` -->
+
+<!-- ### *The Supremes* Key Histogram -->
+<!-- ```{r, echo = FALSE, fig.width=10, fig.height=4.5} -->
+<!-- source('keygrams.R') -->
+<!-- TheSupremes_keys -->
+<!-- ``` -->
+
+<!-- ### *2NE1* Key Histogram -->
+<!-- ```{r, echo = FALSE, fig.width=10, fig.height=4.5} -->
+<!-- source('keygrams.R') -->
+<!-- twoNE1_keys -->
+<!-- ``` -->
+
+<!-- ### *AKB48* Key Histogram -->
+<!-- ```{r, echo = FALSE, fig.width=10, fig.height=4.5} -->
+<!-- source('keygrams.R') -->
+<!-- AKB48_keys -->
+<!-- ``` -->
+
+<!-- Row {.tabset data-height = 400} -->
+<!-- --------------------------------------------------------- -->
+
+<!-- ### General Evaluation -->
+<!-- The minor keys have almost no place in the songs from the four girl groups. This means that their songs mostly evoke positive energy. Furthermore, the D-major and Eb-major are very prominent in all playlists. These two keys have *'Triumphant, Victorious War-Cries'* and *'Cruel, Hard, Yet Full of Devotion'*, respectively as emotive expressions. The emotions of D-major seem to correspond with the high valence, high energy found in the mood indicator graph and the Eb-major key corresponds with the mid-valence, high energy results.  -->
+
+<!-- ### *Spice Girls* Evaluation -->
+<!-- In the 'This is Spice Girls' playlist, almost all major keys occur more often than the minor keys. In general, the major keys evoke positive emotions. The most dominant key is the D-major key, closely followed by Eb-major. The D-major key's emotive expression is *'Triumphant, Victorious War-Cries'* and Eb-major's emotive expressions consists of *'Cruel, Hard, Yet Full of Devotion'*. This suggests powerful messages with a happy tone. -->
+
+<!-- ### *The Supremes* Evaluation -->
+<!-- In the songs of *The Supremes* major keys are clearly preferred over minor keys, with B-major being the absolute winner. This key has the following emotive expressions: *'Harsh, Strong, Wild, Rage'*. This may be considered as low valence, high energy in the mood indicator graph. -->
+
+<!-- ### *2NE1* Evaluation -->
+<!-- *2NE1* seems to have a really strong preference for its keys. There is a clear distinction between their top 3 keys (Bb-major, Eb-major and D-major) and the other keys. The emotive expressions of Bb-major, Eb-major and D-major are *'Joyful, Quaint, Cheerful'*, *'Cruel, Hard, Yet Full of Devotion'* and *'Triumphant, Victorious War-Cries'*, respectively. This suggests quite joyful songs in general with sometimes a more daunting emotion. -->
+
+<!-- ### *AKB48* Evaluation -->
+<!-- In the 'This is AKB48' playlist, the winner is the Eb-major key, followed by the Bb-major, B-major and D-major keys. The Eb-major key expresses *'Cruel, Hard, Yet Full of Devotion'*. This may correspond with mid-valence, hgih energy in the mood indicator graph. -->
+
+
+DTW {data-navmenu="Biggest Hits"}
 ========================================================
 
 Column 
@@ -170,6 +338,64 @@ Column {data-width=400}
 source('DynamicTimeWarpingGraph.R')
 DTW
 ```
+
+Chroma and timbre {data-orientation=rows data-navmenu="Biggest Hits"}
+========================================================
+
+Column {.sidebar data-width=400}
+--------------------------------------------------------
+<font style = "font-size: 28px"><b>Chroma and timbre</b></font>
+
+On the right, the chroma and timbre of the most popular song from each group are shown in the form of a self-similarity matrices. <br>
+The four songs are:
+
+* ['Wannabe' - *Spice Girls*](https://open.spotify.com/track/1Je1IMUlBXcx1Fz0WE7oPT?si=309c00c5834546eb)
+* ['You can't hurry love' - *The Supremes*](https://open.spotify.com/track/1OppEieGNdItZbE14gLBEv?si=2e75ee9ee66f488f)
+* ['I am the best' - 2NE1](https://open.spotify.com/track/26EM9sZnQkLLQxixGd88KE?si=ba22007f076a4f3c)
+* ['恋するフォーチュンクッキー' - *AKB48*](https://open.spotify.com/track/37yHxMij3cpN8SdO915LUI?si=165ca7a20b81414a)
+
+For the chroma matrices, Euclidean normalisation with cosine distance and the root square mean was used. For the timbre matrices, the Euclidean distance with the mean has been used. A darker purple means more similarity and yellow represents novelty.
+
+<i>Make sure to match the graphs with the evaluations by choosing the correct tab.</i>
+
+Row {.tabset data-height=700}
+------------------------------------------------------------------
+### 'Wannabe' - *Spice Girls*
+```{r, echo = FALSE, fig.width=9, fig.height=4.5}
+wannabe_graph
+```
+
+### 'You can't hurry love' - *The Supremes*
+```{r, echo = FALSE, fig.width=8, fig.height=4.5}
+Canthurrylove_graph
+```
+
+### 'I am the best' - *2NE1*
+```{r, echo = FALSE, fig.width=8, fig.height=4.5}
+Iamthebest_graph
+```
+
+### '恋するフォーチュンクッキー' - *AKB48*
+```{r, echo = FALSE, fig.width=8, fig.height=4.5}
+japanese_graph
+```
+
+Row {.tabset data-height=300}
+------------------------------------------------------------------
+### General discussion
+In general, it is interesting to see that the songs from the US and the UK are both a little under three minutes and have a clear start of the bridge at around two minutes. An interesting contradiction is that 'You can't hurry love' is quite homogeneous, whereas the Korean song has a lot of 'new' parts. Furthermore, the song by AKB48 has the clearest repetitions of the chorus but 'Wannabe' seems to have a lot of really small repetitions.
+
+### 'Wannabe' findings
+In the chroma matrix the structure of the song can roughly be seen. When listening to the song you can follow along and find the couplets and chorus. However, there are no very clear repetition in the matrix that you may expect when listening to the song. In the timbre matrix there is one yellow line that stands out at around two minutes. When listening to the song it becomes clear that this is the very short part where there is no background music. Lastly, at the end you can also see some a bit thicker yellowish line. This is the outro of the song that is just instrumental.
+
+### 'You can't hurry love' findings
+Surprisingly, the repetition of the chorus is not as clear in the chroma matrix, although this sounds the same for a listener. A more clear repetition is visible between 35-60 s and 75-100 s. This period indicates the second part of the chorus. This is also quite unexpected since the rhythm stays the same but the lyrics change and still this is more visible than the chorus which is exactly the same every time. In the timbre matrix a yellow line can be seen at around two minutes, this indicates novelty. In this case, the novelty comes from the transition to the bridge, where a clear distinction in the music can be heard as well. However, after the bridge the song ends quite homogeneous.
+
+### 'I am the best' findings
+In the chroma matrix there is not a clear checkerboard pattern that indicates the structure, there is not a lot of homogeneity. This is further confirmed by looking at the timbre matrix. As can be seen there, this song has a lot of novelty. Even when the lyrics are repeated, the background music changes which makes it seem as completely different according to the graph. Furthermore, there are big contrasts between some parts. For instance, the part between 70s and 80s is quite different from the parts before and after that.
+
+### '恋するフォーチュンクッキー' findings
+For this song, the chroma and timbre matrices are very similar. The chorus and pre-chorus can be easily found, around 60s and 150s is the pre-chorus and 75-120s, 165-210s and 220-265s indicate the chorus. The yellow lines that indicate 'novelty' are almost everytime a musical part.
 
 Conclusion
 ============================================================

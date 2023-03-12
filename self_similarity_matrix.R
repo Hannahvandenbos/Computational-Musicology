@@ -3,58 +3,6 @@ library(spotifyr)
 library(compmus)
 library(plotly)
 
-# Update title
-annotations = list(
-  list( 
-    x = 0.23,  
-    y = 1.03,  
-    text = "Chroma matrix", 
-    font = list(size = 18),
-    xref = "paper",
-    yref = "paper",
-    xanchor = "center",  
-    yanchor = "bottom",  
-    showarrow = FALSE 
-  ),  
-  list( 
-    x = 0.75,  
-    y = 1.03,  
-    text = "Timbre matrix", 
-    font = list(size = 18),
-    xref = "paper",  
-    yref = "paper",  
-    xanchor = "center",  
-    yanchor = "bottom",  
-    showarrow = FALSE 
-  ),  
-  list(
-    x = -0.068, 
-    y = 0.5, 
-    text = "Time (s)",
-    font = list(size = 18),
-    textangle = 270,
-    showarrow = F, 
-    xref='paper', 
-    yref='paper', 
-    size=48),
-  list(
-    x = 0.5, 
-    y = -0.15, 
-    text = "Time (s)",
-    font = list(size = 18),
-    showarrow = F, 
-    xref='paper', 
-    yref='paper', 
-    size=48))
-
-m <- list(
-  l = 75,
-  r = 25,
-  b = 50,
-  t = 65,
-  pad = 4
-)
-
 # UK timbre and chroma matrices
 wannabe <-
   get_tidy_audio_analysis("1Je1IMUlBXcx1Fz0WE7oPT") |> # Change URI.
@@ -76,8 +24,15 @@ wannabe <-
       )
   )
 
-wannabe_chroma <- wannabe |>
-  compmus_self_similarity(pitches, "cosine") |> 
+wannabe_graph <- bind_rows(
+  wannabe |>
+    compmus_self_similarity(pitches, "cosine") |>
+    mutate(d = d / max(d), type = "Chroma"),
+  wannabe |>
+    compmus_self_similarity(timbre, "euclidean") |>
+    mutate(d = d / max(d), type = "Timbre")
+) |>
+  mutate() |>
   ggplot(
     aes(
       x = xstart + xduration / 2,
@@ -89,33 +44,12 @@ wannabe_chroma <- wannabe |>
   ) +
   geom_tile() +
   coord_fixed() +
-  scale_fill_viridis_c(option = "C", guide="none") +
-  theme_minimal()
-
-wannabe_timbre <- wannabe |>
-  compmus_self_similarity(timbre, "euclidean") |> 
-  ggplot(
-    aes(
-      x = xstart + xduration / 2,
-      width = xduration,
-      y = ystart + yduration / 2,
-      height = yduration,
-      fill = d
-    )
-  ) +
-  geom_tile() +
-  coord_fixed() +
+  facet_wrap(~type) +
   scale_fill_viridis_c(option = "C", guide = "none") +
-  theme_minimal()
-
-wannabe_graph <- subplot(wannabe_chroma, wannabe_timbre, shareY = TRUE, shareX = TRUE, 
-                         titleX = FALSE, titleY = FALSE, margin = 0.02)
-wannabe_graph <- wannabe_graph %>% layout(plot_bgcolor="#f4ebfe", margin = m, showlegend = FALSE, 
-                                         xaxis = list(scaleanchor="y", constraintoward = "top", constrain="range"),
-                                         yaxis = list(scaleanchor="x", constraintoward = "top", constrain="domain"))
-
-wannabe_graph <- wannabe_graph %>%layout(annotations = annotations) 
-wannabe_graph
+  theme_classic() +
+  theme(panel.background = element_rect(fill = "#f4ebfe",
+                                        colour = "#f4ebfe")) +
+  labs(x = "Time (s)", y = "Time (s)")
 
 # US timbre and chroma matrices
 Canthurrylove <-
@@ -138,8 +72,15 @@ Canthurrylove <-
       )
   )
 
-Canthurrylove_chroma <- Canthurrylove |>
-  compmus_self_similarity(pitches, "cosine") |> 
+Canthurrylove_graph <- bind_rows(
+  Canthurrylove |>
+    compmus_self_similarity(pitches, "cosine") |>
+    mutate(d = d / max(d), type = "Chroma"),
+  Canthurrylove |>
+    compmus_self_similarity(timbre, "euclidean") |>
+    mutate(d = d / max(d), type = "Timbre")
+) |>
+  mutate() |>
   ggplot(
     aes(
       x = xstart + xduration / 2,
@@ -151,32 +92,12 @@ Canthurrylove_chroma <- Canthurrylove |>
   ) +
   geom_tile() +
   coord_fixed() +
+  facet_wrap(~type) +
   scale_fill_viridis_c(option = "C", guide = "none") +
-  theme_minimal()
-
-Canthurrylove_timbre <- Canthurrylove |>
-  compmus_self_similarity(timbre, "euclidean") |> 
-  ggplot(
-    aes(
-      x = xstart + xduration / 2,
-      width = xduration,
-      y = ystart + yduration / 2,
-      height = yduration,
-      fill = d
-    )
-  ) +
-  geom_tile() +
-  coord_fixed() +
-  scale_fill_viridis_c(option = "C", guide = "none") +
-  theme_minimal()
-
-Canthurrylove_graph <- subplot(Canthurrylove_chroma, Canthurrylove_timbre, shareY = TRUE, shareX = TRUE, 
-                         titleX = FALSE, titleY = FALSE, margin = 0.02)
-Canthurrylove_graph <- Canthurrylove_graph %>%layout(plot_bgcolor="#f4ebfe", margin = m, showlegend = FALSE, 
-                                         yaxis = list(zeroline = FALSE, gridcolor = 'ffff',
-                                                      scaleanchor="x", constraintoward = "top", constrain="domain"))
-
-Canthurrylove_graph <- Canthurrylove_graph %>%layout(annotations = annotations) 
+  theme_classic() +
+  theme(panel.background = element_rect(fill = "#f4ebfe",
+                                        colour = "#f4ebfe")) +
+  labs(x = "Time (s)", y = "Time (s)")
 
 # Korean timbre and chroma matrices
 Iamthebest <-
@@ -199,8 +120,15 @@ Iamthebest <-
       )
   )
 
-Iamthebest_chroma <- Iamthebest |>
-  compmus_self_similarity(pitches, "cosine") |> 
+Iamthebest_graph <- bind_rows(
+  Iamthebest |>
+    compmus_self_similarity(pitches, "cosine") |>
+    mutate(d = d / max(d), type = "Chroma"),
+  Iamthebest |>
+    compmus_self_similarity(timbre, "euclidean") |>
+    mutate(d = d / max(d), type = "Timbre")
+) |>
+  mutate() |>
   ggplot(
     aes(
       x = xstart + xduration / 2,
@@ -212,32 +140,12 @@ Iamthebest_chroma <- Iamthebest |>
   ) +
   geom_tile() +
   coord_fixed() +
+  facet_wrap(~type) +
   scale_fill_viridis_c(option = "C", guide = "none") +
-  theme_minimal()
-
-Iamthebest_timbre <- Iamthebest |>
-  compmus_self_similarity(timbre, "euclidean") |> 
-  ggplot(
-    aes(
-      x = xstart + xduration / 2,
-      width = xduration,
-      y = ystart + yduration / 2,
-      height = yduration,
-      fill = d
-    )
-  ) +
-  geom_tile() +
-  coord_fixed() +
-  scale_fill_viridis_c(option = "C", guide = "none") +
-  theme_minimal()
-
-Iamthebest_graph <- subplot(Iamthebest_chroma, Iamthebest_timbre, shareY = TRUE, shareX = TRUE, 
-                               titleX = FALSE, titleY = FALSE, margin = 0.02)
-Iamthebest_graph <- Iamthebest_graph %>%layout(plot_bgcolor="#f4ebfe", margin = m, showlegend = FALSE, 
-                                                     yaxis = list(zeroline = FALSE, gridcolor = 'ffff',
-                                                                  scaleanchor="x", constraintoward = "top", constrain="domain"))
-
-Iamthebest_graph <- Iamthebest_graph %>%layout(annotations = annotations) 
+  theme_classic() +
+  theme(panel.background = element_rect(fill = "#f4ebfe",
+                                        colour = "#f4ebfe")) +
+  labs(x = "Time (s)", y = "Time (s)")
 
 # Japanese timbre and chroma matrices
 japanese <-
@@ -260,8 +168,15 @@ japanese <-
       )
   )
 
-japanese_chroma <- japanese |>
-  compmus_self_similarity(pitches, "cosine") |> 
+japanese_graph <- bind_rows(
+  japanese |>
+    compmus_self_similarity(pitches, "cosine") |>
+    mutate(d = d / max(d), type = "Chroma"),
+  japanese |>
+    compmus_self_similarity(timbre, "euclidean") |>
+    mutate(d = d / max(d), type = "Timbre")
+) |>
+  mutate() |>
   ggplot(
     aes(
       x = xstart + xduration / 2,
@@ -273,29 +188,9 @@ japanese_chroma <- japanese |>
   ) +
   geom_tile() +
   coord_fixed() +
+  facet_wrap(~type) +
   scale_fill_viridis_c(option = "C", guide = "none") +
-  theme_minimal()
-
-japanese_timbre <- japanese |>
-  compmus_self_similarity(timbre, "euclidean") |> 
-  ggplot(
-    aes(
-      x = xstart + xduration / 2,
-      width = xduration,
-      y = ystart + yduration / 2,
-      height = yduration,
-      fill = d
-    )
-  ) +
-  geom_tile() +
-  coord_fixed() +
-  scale_fill_viridis_c(option = "C", guide = "none") +
-  theme_minimal()
-
-japanese_graph <- subplot(japanese_chroma, japanese_timbre, shareY = TRUE, shareX = TRUE, 
-                            titleX = FALSE, titleY = FALSE, margin = 0.02)
-japanese_graph <- japanese_graph %>%layout(plot_bgcolor="#f4ebfe", margin = m, showlegend = FALSE, 
-                                               yaxis = list(zeroline = FALSE, gridcolor = 'ffff',
-                                                            scaleanchor="x", constraintoward = "top", constrain="domain"))
-
-japanese_graph <- japanese_graph %>%layout(annotations = annotations) 
+  theme_classic() +
+  theme(panel.background = element_rect(fill = "#f4ebfe",
+                                        colour = "#f4ebfe")) +
+  labs(x = "Time (s)", y = "Time (s)")
