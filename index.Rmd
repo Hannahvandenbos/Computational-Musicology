@@ -107,26 +107,26 @@ Column {data-width=260}
 ### Spice Girls
 The <i>Spice Girls</i> is a British group that was formed in 1994 with five members. Their main genre is pop. With their 11 singles they have claimed a total of more than 100 million record sales, making them the best selling girl group in the world.
 
-<!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWUJdr9ahsbf?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe> -->
+<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWWUJdr9ahsbf?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 
 ### The Supremes
 <i>The Supremes</i> comes in second place with 66 singles and 50-100 million claimed record sales. They were known for their R&B/ soul music from 1959 till 1977. They originally started with four members, but their have been ten different members in total.
 
-<!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO30nCXS?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe> -->
+<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO30nCXS?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 
 Column
 ------------------------------------------------
 ### 2NE1
 Turning to Asia, we have the South-Korean group <i>2NE1</i>. The four members of this group were active from 2009 till 2016 and they have brought out 18 singles, resulting in 66 million claimed record sales. They explored the R&B side of K-pop.
 
-<!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO0Jta80?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe> -->
+<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO0Jta80?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 ```{r, out.width = "100%"}
 #knitr::include_url("https://open.spotify.com/embed/track/26EM9sZnQkLLQxixGd88KE?utm_source=generator", height = "100")
 ```
 ### AKB48
 Lastly, we have the biggest pop group in the world <i>AKB48</i>. The group currently consists of 80 members divided over 5 teams. The group has been active since 2005 and produced 59 singles, giving them over 60 million claimed record sales.
 
-<!-- <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evNZWreOe?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe> -->
+<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evNZWreOe?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
 ```{r, out.width = "100%"}
 #knitr::include_url("https://open.spotify.com/embed/track/37yHxMij3cpN8SdO915LUI?utm_source=generator", height = "100")
 ```
