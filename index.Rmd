@@ -29,62 +29,56 @@ library(plotly)
 library(flexdashboard)
 source('self_similarity_matrix.R')
 ```
+Tempo {data-navmenu="Biggest Hits" data-orientation=rows}
+========================================================
 
-Key Histograms {data-navmenu="Full Repertoire" data-orientation=rows}
-==================================================================
-
-Column {.sidebar data-width=400}
+Column {.sidebar data-width=350}
 --------------------------------------------------------
-<font style = "font-size: 28px"><b>Key Histograms</b></font>
+<font style = "font-size: 28px"><b>Tempograms</b></font>
 
-The histograms on the right show the number of key occurrences of all songs per group. Each song has been split in roughly ten time frames. Per time frame, the most prominent key has been chosen. This has been determined by using the Manhattan normalisation with the Aitchison distance in combination with the mean. However, it is important to keep in mind that Spotify's analysis may not always be accurate.
+On this tab, the "biggest hits" of each group are compared to their corresponding full playlists. In this way, not only can we learn about the tempi of the song but also find out how representative the "biggest hit" is for that group in terms of tempo. On the left, a histogram of the tempi in the playlist is shown. This histogram has a binwidth of 15. On the right, the cyclic tempogram of the "biggest hit" is displayed. In the tempogram, the yellow line(s) indicates the tempo during that song. <br>
 
-The key(s) of a song can, to a certain extent, give off emotions. The evaluations are based on ['Musical Key Characteristics and Emotions by Jared H.'](https://ledgernote.com/blog/interesting/musical-key-characteristics-emotions/).
-
-*Make sure to match the graphs with the evaluations by choosing the correct tab. *
+<i>Make sure to match the graphs with the evaluations by choosing the correct tab.</i>
 
 Row {.tabset data-height=700}
--------------------------------------------------------
-### *Spice Girls* Key Histogram
+------------------------------------------------------------------
+### *Spice Girls* - 'Wannabe'
 ```{r, echo = FALSE, fig.width=10, fig.height=4.5}
-source('keygrams.R')
-SpiceGirls_keys
+spicegirls_tempo
 ```
 
-### *The Supremes* Key Histogram
+### *The Supremes* - 'You can't hurry love'
 ```{r, echo = FALSE, fig.width=10, fig.height=4.5}
-source('keygrams.R')
-TheSupremes_keys
+TheSupremes_tempo
 ```
 
-### *2NE1* Key Histogram
+### *2NE1* - 'I am the best'
 ```{r, echo = FALSE, fig.width=10, fig.height=4.5}
-source('keygrams.R')
-twoNE1_keys
+twoNE1_tempo
 ```
 
-### *AKB48* Key Histogram
+### *AKB48* - '恋するフォーチュンクッキー'
 ```{r, echo = FALSE, fig.width=10, fig.height=4.5}
-source('keygrams.R')
-AKB48_keys
+AK_tempo
 ```
 
-Row {.tabset}
----------------------------------------------------------
+Row {.tabset data-height=300}
+------------------------------------------------------------------
 ### General Evaluation
-The minor keys have almost no place in the songs from the four girl groups. This means that their songs mostly evoke positive energy. Furthermore, the D-major and Eb-major are very prominent in all playlists. These two keys have *'Triumphant, Victorious War-Cries'* and *'Cruel, Hard, Yet Full of Devotion'*, respectively as emotive expressions. The emotions of D-major seem to correspond with the high valence, high energy found in the mood indicator graph and the Eb-major key corresponds with the mid-valence, high energy results. 
+In general, we can see an upgoing trend in terms of the overall tempo of the playlists; *Spice Girls* is centered around 100 bpm, *The Supremes* and *2NE1* songs mostly fall between 110 and 140 bpm and *AKB48* is more widespread but peaks at 160 bpm. Furthermore, all the biggest hits have one consistent tempo throughout the whole song that falls within the margin of the playlist. Therefore, the biggest hits are quite representative for the group in terms of tempo, since they do not differ greatly from the other songs in the playlists. 
 
 ### *Spice Girls* Evaluation
-In the 'This is Spice Girls' playlist, almost all major keys occur more often than the minor keys. In general, the major keys evoke positive emotions. The most dominant key is the D-major key, closely followed by Eb-major. The D-major key's emotive expression is *'Triumphant, Victorious War-Cries'* and Eb-major's emotive expressions consists of *'Cruel, Hard, Yet Full of Devotion'*. This suggests powerful messages with a happy tone.
+From the tempogram, it is quite evident that 'Wannabe' has a tempo of around 110 bpm throughout the whole song. There are no changes in tempo, since there is just a straight horizontal line. From the tempo histogram, it appears that the highest peak is around 100-110 bpm as well. This means that roughly a third (13 out of 42) of the songs fall in this category, including 'Wannabe'. Furthermore, most other songs are in the surrounding bins. Therefore, the biggest hit 'Wannabe' is not unique in terms of the tempo for *Spice Girls*.
 
 ### *The Supremes* Evaluation
-In the songs of *The Supremes* major keys are clearly preferred over minor keys, with B-major being the absolute winner. This key has the following emotive expressions: *'Harsh, Strong, Wild, Rage'*. This may be considered as low valence, high energy in the mood indicator graph.
+The tempo histogram has two clear peak, showing that 16 out of 50 songs from *The Supremes* have a bpm of about 120 and 12 songs have a bpm of about 130. From this place songs are more likely to have a lower tempo, making the 130 also the highest common value. The tempogram shows that 'You can't hurry love' falls on the lower side of the spectrum with a bpm of about 95 throughout the whole song. Although this does not fall within the most common margin, it is still quite a representative value for the complete playlist. However, what is interesting is the vague yellow line at about 145 bpm in the tempogram. This indicates that a higher bpm has been detected that is prevalent.
 
 ### *2NE1* Evaluation
-*2NE1* seems to have a really strong preference for its keys. There is a clear distinction between their top 3 keys (Bb-major, Eb-major and D-major) and the other keys. The emotive expressions of Bb-major, Eb-major and D-major are *'Joyful, Quaint, Cheerful'*, *'Cruel, Hard, Yet Full of Devotion'* and *'Triumphant, Victorious War-Cries'*, respectively. This suggests quite joyful songs in general with sometimes a more daunting emotion.
+This histogram has a two extreme peaks that form into one very clear peak. This peak contains two thirds (24/36) of the songs from the playlist. The peaks cover a range from 110 to 140 bpm. The tempogram shows that *2NE1*'s "biggest hit" also falls within this margin, with a constant tempo of 130 bpm. Therefore, this song represents the high-tempo playlist quite well.
 
 ### *AKB48* Evaluation
-In the 'This is AKB48' playlist, the winner is the Eb-major key, followed by the Bb-major, B-major and D-major keys. The Eb-major key expresses *'Cruel, Hard, Yet Full of Devotion'*. This may correspond with mid-valence, hgih energy in the mood indicator graph.
+The histogram has three distinct peaks (100-115 bpm, 130-145 bpm, 160-175 bpm) with increasing values: the first peak consists of 6 songs, the middle peak shows 10 songs and the last peak corresponds with 13 songs. However, from the tempogram, it appears that the biggest hit does not fall within one of these peaks with a tempo of just over 120 bpm. Therefore, this song does not seem super representative for the playlist. Nonetheless, since it falls between two peaks it actually is not that far off, since a higher binwidth would have made it an element of a peak.
+
 
 Introduction {data-orientation=rows}
 =========================================================
@@ -163,7 +157,7 @@ Row {data-height=300}
 
 ### What does it mean to be a popular girl group?
 
-The list of the best-selling girl groups worldwide has been in 2017, and thus may be a bit outdated. Furthermore, the sources that were used to create the list may not be reliable. Nonetheless, for this portfolio, the list has only been used as a rough indication to establish what a popular girl group is. The four chosen groups are all the best-selling in their own country, however, it is not the top 4 globally. Although <i>Spice Girls</i> and <i>The Supremes</i> are number 1 and 2 respectively, <i>2NE1</i> takes the fourth place worldwide and <i>AKB48</i> comes sixth globally. The complete top 6 can be found below and the full list can be found [here](https://en.wikipedia.org/wiki/List_of_best-selling_girl_groups).
+The [list of the best-selling girl groups worldwide](https://en.wikipedia.org/wiki/List_of_best-selling_girl_groups) that has been used for this portfolio was created in 2017, and thus may be a bit outdated. Furthermore, the sources that were used to create the list may not be reliable. Nonetheless, for this portfolio, the list has only been used as a rough indication to establish what a popular girl group is. The four chosen groups are all the best-selling in their own country, however, they do not make the top 4 globally. Although <i>Spice Girls</i> and <i>The Supremes</i> are number 1 and 2 respectively, <i>2NE1</i> takes the fourth place worldwide and <i>AKB48</i> comes sixth globally. The complete top 6 can be found below.
 
 **Top 10 best-selling girl groups:**
 
@@ -171,7 +165,7 @@ The list of the best-selling girl groups worldwide has been in 2017, and thus ma
 best_selling <- data.frame(Group=c('Spice Girls', 'The Supremes', 'The Andrews Sisters', '2NE1',
                                    'TLC', 'AKB48'),
                  Country=c('UK', 'US', 'US', 'KR', 'US', 'JP'),
-                 Records=c('> 100 million', '50-100 million', '> 75 million', '> 66 million', 
+                 Records=c('> 100 million', '50-100 million', '> 75 million', '> 66 million',
                            '> 65 million', '> 60 million'))
 
 knitr::kable(best_selling)
@@ -183,14 +177,14 @@ A popular group does not automatically mean that all their songs are popular as 
 **Most and least popular songs**
 
 ```{r}
-songs <- matrix(c('Wannabe', 77, 'A Mind Of Its Own', 26, "You Can't Hurry Love", 71, 
+songs <- matrix(c('Wannabe', 77, 'A Mind Of Its Own', 26, "You Can't Hurry Love", 71,
 'Let Me Go The Right Way', 16, 'I Am The Best', 62, 'LIKE A VIRGIN', 24, '恋するフォーチュンクッキー', 46, 'ハート型ウイルス(TeamA)', 26), ncol=4, byrow=TRUE)
 
 #define column names and row names of matrix
 colnames(songs) <- c('Most popular', 'Popularity', 'Least popular', 'Popularity')
 rownames(songs) <- c('Spice Girls', 'The Supremes', '2NE1', 'AKB48')
 
-#convert matrix to table 
+#convert matrix to table
 songs <- as.table(songs)
 
 knitr::kable(songs)
@@ -217,24 +211,80 @@ source('first_visualisation.R')
 fig
 ```
 
-Tempo {data-navmenu="Full Repertoire" data-orientation=rows}
-=========================================================
+Key Histograms {data-navmenu="Full Repertoire" data-orientation=rows}
+==================================================================
 
 Column {.sidebar data-width=400}
-------------------------------------------------------------
-<font style = "font-size: 20px"><b>Tempo</b></font>
+--------------------------------------------------------
+<font style = "font-size: 28px"><b>Key Histograms</b></font>
 
-Row
---------------------------------------------------------------
-### Tempo Distribution of the Songs
-```{r, echo=FALSE, fig.width=12.5, fig.height=3}
-source('first_visualisation.R')
-tempo_plot
+The histograms on the right show the number of key occurrences of all songs per group. Each song has been split in roughly ten time frames. Per time frame, the most prominent key has been chosen. This has been determined by using the Manhattan normalisation with the Aitchison distance in combination with the mean. However, it is important to keep in mind that Spotify's analysis may not always be accurate.
+
+The key(s) of a song can, to a certain extent, give off emotions. The evaluations are based on ['Musical Key Characteristics and Emotions by Jared H.'](https://ledgernote.com/blog/interesting/musical-key-characteristics-emotions/).
+
+*Make sure to match the graphs with the evaluations by choosing the correct tab. *
+
+Row {.tabset data-height=700}
+-------------------------------------------------------
+### *Spice Girls* Key Histogram
+```{r, echo = FALSE, fig.width=10, fig.height=4.5}
+source('keygrams.R')
+SpiceGirls_keys
 ```
 
-Row
----------------------------------------------------------------
-There will come an evaluation here.
+### *The Supremes* Key Histogram
+```{r, echo = FALSE, fig.width=10, fig.height=4.5}
+source('keygrams.R')
+TheSupremes_keys
+```
+
+### *2NE1* Key Histogram
+```{r, echo = FALSE, fig.width=10, fig.height=4.5}
+source('keygrams.R')
+twoNE1_keys
+```
+
+### *AKB48* Key Histogram
+```{r, echo = FALSE, fig.width=10, fig.height=4.5}
+source('keygrams.R')
+AKB48_keys
+```
+
+Row {.tabset}
+---------------------------------------------------------
+### General Evaluation
+The minor keys have almost no place in the songs from the four girl groups. This means that their songs mostly evoke positive energy. Furthermore, the D-major and Eb-major are very prominent in all playlists. These two keys have *'Triumphant, Victorious War-Cries'* and *'Cruel, Hard, Yet Full of Devotion'*, respectively as emotive expressions. The emotions of D-major seem to correspond with the high valence, high energy found in the mood indicator graph and the Eb-major key corresponds with the mid-valence, high energy results.
+
+### *Spice Girls* Evaluation
+In the 'This is Spice Girls' playlist, almost all major keys occur more often than the minor keys. In general, the major keys evoke positive emotions. The most dominant key is the D-major key, closely followed by Eb-major. The D-major key's emotive expression is *'Triumphant, Victorious War-Cries'* and Eb-major's emotive expressions consists of *'Cruel, Hard, Yet Full of Devotion'*. This suggests powerful messages with a happy tone.
+
+### *The Supremes* Evaluation
+In the songs of *The Supremes* major keys are clearly preferred over minor keys, with B-major being the absolute winner. This key has the following emotive expressions: *'Harsh, Strong, Wild, Rage'*. This may be considered as low valence, high energy in the mood indicator graph.
+
+### *2NE1* Evaluation
+*2NE1* seems to have a really strong preference for its keys. There is a clear distinction between their top 3 keys (Bb-major, Eb-major and D-major) and the other keys. The emotive expressions of Bb-major, Eb-major and D-major are *'Joyful, Quaint, Cheerful'*, *'Cruel, Hard, Yet Full of Devotion'* and *'Triumphant, Victorious War-Cries'*, respectively. This suggests quite joyful songs in general with sometimes a more daunting emotion.
+
+### *AKB48* Evaluation
+In the 'This is AKB48' playlist, the winner is the Eb-major key, followed by the Bb-major, B-major and D-major keys. The Eb-major key expresses *'Cruel, Hard, Yet Full of Devotion'*. This may correspond with mid-valence, high energy in the mood indicator graph.
+
+<!-- Tempo {data-navmenu="Full Repertoire" data-orientation=rows} -->
+<!-- ========================================================= -->
+
+<!-- Column {.sidebar data-width=400} -->
+<!-- ------------------------------------------------------------ -->
+<!-- <font style = "font-size: 20px"><b>Tempo</b></font> -->
+
+<!-- Row -->
+<!-- -------------------------------------------------------------- -->
+<!-- ### Tempo Distribution of the Songs -->
+<!-- ```{r, echo=FALSE, fig.width=12.5, fig.height=3} -->
+<!-- source('first_visualisation.R') -->
+<!-- tempo_plot -->
+<!-- ``` -->
+
+<!-- Row -->
+<!-- --------------------------------------------------------------- -->
+<!-- There will come an evaluation here. -->
 <!-- ### Spice Girls -->
 <!-- ```{r, echo=FALSE, fig.width=5, fig.height=3} -->
 <!-- source('first_visualisation.R') -->
@@ -263,83 +313,25 @@ There will come an evaluation here.
 <!-- ``` -->
 
 
-<!-- Key Histograms {data-navmenu="Full Repertoire" data-orientation=rows} -->
-<!-- ================================================================== -->
+<!-- DTW {data-navmenu="Biggest Hits"} -->
+<!-- ======================================================== -->
 
-<!-- Column {.sidebar data-width=400} -->
+<!-- Column  -->
 <!-- -------------------------------------------------------- -->
-<!-- <font style = "font-size: 28px"><b>Key Histograms</b></font> -->
+<!-- <font style = "font-size: 24px"><b>Similarity between different versions</b></font> -->
 
-<!-- The histograms on the right show the number of key occurrences of all songs per group. Each song has been split in roughly ten time frames. Per time frame, the most prominent key has been chosen. This has been determined by using the Manhattan normalisation with the Aitchison distance in combination with the mean. However, it is important to keep in mind that Spotify's analysis may not always be accurate. -->
+<!-- <i>Do you ever prefer the remix of your favorite song over the original? Or maybe you like how the emotions of the singer are more clear in an acoustic version? But how different are such remakes from the original? On the right, we compare an original song with its orchestral counterpart. </i> -->
 
-<!-- The key(s) of a song can, to a certain extent, give off emotions. The evaluations are based on ['Musical Key Characteristics and Emotions by Jared H.'](https://ledgernote.com/blog/interesting/musical-key-characteristics-emotions/). -->
+<!-- When an artist or song is very popular, they often remake their song with another artist or turn into an acoustic version or sometimes even a remix. The same goes for The Supremes with their song 'I hear a symphony'. The Supremes have re-recorded this song with the Royal Philharmonic Orchestra, turning it into an orchestral version. In the Dynamic Time Warping graph on the right, the similarity between the two versions can be seen. There is an almost perfect straight line from the left bottom to top right, this means that the different versions are actually really close to each other. -->
 
-<!-- *Make sure to match the graphs with the evaluations by choosing the correct tab. * -->
-
-<!-- Row {.tabset data-height = 600} -->
-<!-- ------------------------------------------------------- -->
-<!-- ### *Spice Girls* Key Histogram -->
-<!-- ```{r, echo = FALSE, fig.width=10, fig.height=4.5} -->
-<!-- source('keygrams.R') -->
-<!-- SpiceGirls_keys -->
+<!-- Column {data-width=400} -->
+<!-- ------------------------------------------------------------------------ -->
+<!-- ```{r, echo = FALSE, fig.width=7, fig.height=5.5} -->
+<!-- source('DynamicTimeWarpingGraph.R') -->
+<!-- DTW -->
 <!-- ``` -->
 
-<!-- ### *The Supremes* Key Histogram -->
-<!-- ```{r, echo = FALSE, fig.width=10, fig.height=4.5} -->
-<!-- source('keygrams.R') -->
-<!-- TheSupremes_keys -->
-<!-- ``` -->
-
-<!-- ### *2NE1* Key Histogram -->
-<!-- ```{r, echo = FALSE, fig.width=10, fig.height=4.5} -->
-<!-- source('keygrams.R') -->
-<!-- twoNE1_keys -->
-<!-- ``` -->
-
-<!-- ### *AKB48* Key Histogram -->
-<!-- ```{r, echo = FALSE, fig.width=10, fig.height=4.5} -->
-<!-- source('keygrams.R') -->
-<!-- AKB48_keys -->
-<!-- ``` -->
-
-<!-- Row {.tabset data-height = 400} -->
-<!-- --------------------------------------------------------- -->
-
-<!-- ### General Evaluation -->
-<!-- The minor keys have almost no place in the songs from the four girl groups. This means that their songs mostly evoke positive energy. Furthermore, the D-major and Eb-major are very prominent in all playlists. These two keys have *'Triumphant, Victorious War-Cries'* and *'Cruel, Hard, Yet Full of Devotion'*, respectively as emotive expressions. The emotions of D-major seem to correspond with the high valence, high energy found in the mood indicator graph and the Eb-major key corresponds with the mid-valence, high energy results.  -->
-
-<!-- ### *Spice Girls* Evaluation -->
-<!-- In the 'This is Spice Girls' playlist, almost all major keys occur more often than the minor keys. In general, the major keys evoke positive emotions. The most dominant key is the D-major key, closely followed by Eb-major. The D-major key's emotive expression is *'Triumphant, Victorious War-Cries'* and Eb-major's emotive expressions consists of *'Cruel, Hard, Yet Full of Devotion'*. This suggests powerful messages with a happy tone. -->
-
-<!-- ### *The Supremes* Evaluation -->
-<!-- In the songs of *The Supremes* major keys are clearly preferred over minor keys, with B-major being the absolute winner. This key has the following emotive expressions: *'Harsh, Strong, Wild, Rage'*. This may be considered as low valence, high energy in the mood indicator graph. -->
-
-<!-- ### *2NE1* Evaluation -->
-<!-- *2NE1* seems to have a really strong preference for its keys. There is a clear distinction between their top 3 keys (Bb-major, Eb-major and D-major) and the other keys. The emotive expressions of Bb-major, Eb-major and D-major are *'Joyful, Quaint, Cheerful'*, *'Cruel, Hard, Yet Full of Devotion'* and *'Triumphant, Victorious War-Cries'*, respectively. This suggests quite joyful songs in general with sometimes a more daunting emotion. -->
-
-<!-- ### *AKB48* Evaluation -->
-<!-- In the 'This is AKB48' playlist, the winner is the Eb-major key, followed by the Bb-major, B-major and D-major keys. The Eb-major key expresses *'Cruel, Hard, Yet Full of Devotion'*. This may correspond with mid-valence, hgih energy in the mood indicator graph. -->
-
-
-DTW {data-navmenu="Biggest Hits"}
-========================================================
-
-Column 
---------------------------------------------------------
-<font style = "font-size: 24px"><b>Similarity between different versions</b></font>
-
-<i>Do you ever prefer the remix of your favorite song over the original? Or maybe you like how the emotions of the singer are more clear in an acoustic version? But how different are such remakes from the original? On the right, we compare an original song with its orchestral counterpart. </i>
-
-When an artist or song is very popular, they often remake their song with another artist or turn into an acoustic version or sometimes even a remix. The same goes for The Supremes with their song 'I hear a symphony'. The Supremes have re-recorded this song with the Royal Philharmonic Orchestra, turning it into an orchestral version. In the Dynamic Time Warping graph on the right, the similarity between the two versions can be seen. There is an almost perfect straight line from the left bottom to top right, this means that the different versions are actually really close to each other.
-
-Column {data-width=400}
-------------------------------------------------------------------------
-```{r, echo = FALSE, fig.width=7, fig.height=5.5}
-source('DynamicTimeWarpingGraph.R')
-DTW
-```
-
-Chroma and timbre {data-orientation=rows data-navmenu="Biggest Hits"}
+Chroma and timbre {data-navmenu="Biggest Hits" data-orientation=rows}
 ========================================================
 
 Column {.sidebar data-width=400}
@@ -366,35 +358,35 @@ wannabe_graph
 ```
 
 ### 'You can't hurry love' - *The Supremes*
-```{r, echo = FALSE, fig.width=8, fig.height=4.5}
+```{r, echo = FALSE, fig.width=9, fig.height=4.5}
 Canthurrylove_graph
 ```
 
 ### 'I am the best' - *2NE1*
-```{r, echo = FALSE, fig.width=8, fig.height=4.5}
+```{r, echo = FALSE, fig.width=9, fig.height=4.5}
 Iamthebest_graph
 ```
 
 ### '恋するフォーチュンクッキー' - *AKB48*
-```{r, echo = FALSE, fig.width=8, fig.height=4.5}
+```{r, echo = FALSE, fig.width=9, fig.height=4.5}
 japanese_graph
 ```
 
 Row {.tabset data-height=300}
 ------------------------------------------------------------------
-### General discussion
+### General Evaluation
 In general, it is interesting to see that the songs from the US and the UK are both a little under three minutes and have a clear start of the bridge at around two minutes. An interesting contradiction is that 'You can't hurry love' is quite homogeneous, whereas the Korean song has a lot of 'new' parts. Furthermore, the song by AKB48 has the clearest repetitions of the chorus but 'Wannabe' seems to have a lot of really small repetitions.
 
-### 'Wannabe' findings
+### 'Wannabe' Evaluation
 In the chroma matrix the structure of the song can roughly be seen. When listening to the song you can follow along and find the couplets and chorus. However, there are no very clear repetition in the matrix that you may expect when listening to the song. In the timbre matrix there is one yellow line that stands out at around two minutes. When listening to the song it becomes clear that this is the very short part where there is no background music. Lastly, at the end you can also see some a bit thicker yellowish line. This is the outro of the song that is just instrumental.
 
-### 'You can't hurry love' findings
+### 'You can't hurry love' Evaluation
 Surprisingly, the repetition of the chorus is not as clear in the chroma matrix, although this sounds the same for a listener. A more clear repetition is visible between 35-60 s and 75-100 s. This period indicates the second part of the chorus. This is also quite unexpected since the rhythm stays the same but the lyrics change and still this is more visible than the chorus which is exactly the same every time. In the timbre matrix a yellow line can be seen at around two minutes, this indicates novelty. In this case, the novelty comes from the transition to the bridge, where a clear distinction in the music can be heard as well. However, after the bridge the song ends quite homogeneous.
 
-### 'I am the best' findings
+### 'I am the best' Evaluation
 In the chroma matrix there is not a clear checkerboard pattern that indicates the structure, there is not a lot of homogeneity. This is further confirmed by looking at the timbre matrix. As can be seen there, this song has a lot of novelty. Even when the lyrics are repeated, the background music changes which makes it seem as completely different according to the graph. Furthermore, there are big contrasts between some parts. For instance, the part between 70s and 80s is quite different from the parts before and after that.
 
-### '恋するフォーチュンクッキー' findings
+### '恋するフォーチュンクッキー' Evaluation
 For this song, the chroma and timbre matrices are very similar. The chorus and pre-chorus can be easily found, around 60s and 150s is the pre-chorus and 75-120s, 165-210s and 220-265s indicate the chorus. The yellow lines that indicate 'novelty' are almost everytime a musical part.
 
 Conclusion

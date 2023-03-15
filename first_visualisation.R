@@ -240,7 +240,6 @@ ne_tempo <- plot_ly(NE, x=~tempo, name=~which_group, color = 'NE', colors = "#ff
 ak_tempo <- plot_ly(AK, x=~tempo, name=~which_group, color = 'AK', colors = "#9b19f5", alpha=0.75,
                     type= "histogram", hovertemplate = paste('Tempo range: %{x} <br>', 
                                                              'Number of songs: %{y}<extra></extra>'))
-
 tempo_plot <- subplot(sg_tempo, ts_tempo, ne_tempo, ak_tempo, nrows = 1, shareY = TRUE, 
                       shareX = TRUE, titleX = FALSE, titleY = FALSE, margin = 0.025) %>% 
   layout(plot_bgcolor="#f4ebfe", margin = m_tempo, showlegend = FALSE, 
