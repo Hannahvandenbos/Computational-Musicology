@@ -27,60 +27,15 @@ library(tidyverse)
 library(dplyr)
 library(plotly)
 library(flexdashboard)
+source('PlaylistsPrep.R')
+source('loudness.R')
+source('clustering.R')
+source('keygrams.R')
+source('first_visualisation.R')
 source('self_similarity_matrix.R')
 ```
-Tempo {data-navmenu="Biggest Hits" data-orientation=rows}
-========================================================
 
-Column {.sidebar data-width=350}
---------------------------------------------------------
-<font style = "font-size: 28px"><b>Tempograms</b></font>
-
-On this tab, the "biggest hits" of each group are compared to their corresponding full playlists. In this way, not only can we learn about the tempi of the song but also find out how representative the "biggest hit" is for that group in terms of tempo. On the left, a histogram of the tempi in the playlist is shown. This histogram has a binwidth of 15. On the right, the cyclic tempogram of the "biggest hit" is displayed. In the tempogram, the yellow line(s) indicates the tempo during that song. <br>
-
-<i>Make sure to match the graphs with the evaluations by choosing the correct tab.</i>
-
-Row {.tabset data-height=700}
-------------------------------------------------------------------
-### *Spice Girls* - 'Wannabe'
-```{r, echo = FALSE, fig.width=10, fig.height=4.5}
-spicegirls_tempo
-```
-
-### *The Supremes* - 'You can't hurry love'
-```{r, echo = FALSE, fig.width=10, fig.height=4.5}
-TheSupremes_tempo
-```
-
-### *2NE1* - 'I am the best'
-```{r, echo = FALSE, fig.width=10, fig.height=4.5}
-twoNE1_tempo
-```
-
-### *AKB48* - '恋するフォーチュンクッキー'
-```{r, echo = FALSE, fig.width=10, fig.height=4.5}
-AK_tempo
-```
-
-Row {.tabset data-height=300}
-------------------------------------------------------------------
-### General Evaluation
-In general, we can see an upgoing trend in terms of the overall tempo of the playlists; *Spice Girls* is centered around 100 bpm, *The Supremes* and *2NE1* songs mostly fall between 110 and 140 bpm and *AKB48* is more widespread but peaks at 160 bpm. Furthermore, all the biggest hits have one consistent tempo throughout the whole song that falls within the margin of the playlist. Therefore, the biggest hits are quite representative for the group in terms of tempo, since they do not differ greatly from the other songs in the playlists. 
-
-### *Spice Girls* Evaluation
-From the tempogram, it is quite evident that 'Wannabe' has a tempo of around 110 bpm throughout the whole song. There are no changes in tempo, since there is just a straight horizontal line. From the tempo histogram, it appears that the highest peak is around 100-110 bpm as well. This means that roughly a third (13 out of 42) of the songs fall in this category, including 'Wannabe'. Furthermore, most other songs are in the surrounding bins. Therefore, the biggest hit 'Wannabe' is not unique in terms of the tempo for *Spice Girls*.
-
-### *The Supremes* Evaluation
-The tempo histogram has two clear peak, showing that 16 out of 50 songs from *The Supremes* have a bpm of about 120 and 12 songs have a bpm of about 130. From this place songs are more likely to have a lower tempo, making the 130 also the highest common value. The tempogram shows that 'You can't hurry love' falls on the lower side of the spectrum with a bpm of about 95 throughout the whole song. Although this does not fall within the most common margin, it is still quite a representative value for the complete playlist. However, what is interesting is the vague yellow line at about 145 bpm in the tempogram. This indicates that a higher bpm has been detected that is prevalent.
-
-### *2NE1* Evaluation
-This histogram has a two extreme peaks that form into one very clear peak. This peak contains two thirds (24/36) of the songs from the playlist. The peaks cover a range from 110 to 140 bpm. The tempogram shows that *2NE1*'s "biggest hit" also falls within this margin, with a constant tempo of 130 bpm. Therefore, this song represents the high-tempo playlist quite well.
-
-### *AKB48* Evaluation
-The histogram has three distinct peaks (100-115 bpm, 130-145 bpm, 160-175 bpm) with increasing values: the first peak consists of 6 songs, the middle peak shows 10 songs and the last peak corresponds with 13 songs. However, from the tempogram, it appears that the biggest hit does not fall within one of these peaks with a tempo of just over 120 bpm. Therefore, this song does not seem super representative for the playlist. Nonetheless, since it falls between two peaks it actually is not that far off, since a higher binwidth would have made it an element of a peak.
-
-
-Introduction {data-orientation=rows}
+ {data-orientation=rows data-icon="fa-home"}
 =========================================================
 
 Column {.sidebar data-width=480}
@@ -89,9 +44,9 @@ Column {.sidebar data-width=480}
 
 In the Western music industry (US, UK) girl groups are not as much of a phenomenon as in the Asian music industry (K-pop, J-pop). Nonetheless, the most popular girl groups can be found all over the world!
 
-Based on the number of claimed total records, four of the most popular girl groups around the world have been studied. These groups are the 'Spice Girls' (UK), 'The Supremes' (US), '2NE1' (KR) and 'AKB48' (JP). The greatest hits, according to Spotify, of each group are used to gain a better insight into the following questions: What do popular girl groups have in common? What makes a group stand out? What is the secret of a popular girl group?
+Based on the number of claimed total records, four of the most popular girl groups around the world have been studied. These groups are *Spice Girls* (UK), *The Supremes* (US), *2NE1* (KR) and *AKB48* (JP). The greatest hits, according to Spotify, of each group are used to gain a better insight into the following questions: What do popular girl groups have in common? What makes a group stand out? What is the secret of a popular girl group?
 
-The “This is ‘group name’ “ playlists, created by Spotify, have been used for all groups. A total of 178 songs have been studied: 42 songs of 'Spice Girls', 50 songs of 'The Supremes', 36 songs of'2NE1' and 50 songs of 'AKB48'. <br>These playlists may also include solo songs of some members.
+The “This is ‘group name’ “ playlists, created by Spotify, have been used for all groups. A total of 178 songs have been studied: 42 songs of *Spice Girls*, 50 songs of *The Supremes*, 36 songs of *2NE1* and 50 songs of *AKB48*. <br>These playlists may also include solo songs of some members.
 
 <b>On the right you can meet the groups!</b>
 
@@ -113,17 +68,13 @@ Column
 Turning to Asia, we have the South-Korean group <i>2NE1</i>. The four members of this group were active from 2009 till 2016 and they have brought out 18 singles, resulting in 66 million claimed record sales. They explored the R&B side of K-pop.
 
 <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO0Jta80?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
-```{r, out.width = "100%"}
-#knitr::include_url("https://open.spotify.com/embed/track/26EM9sZnQkLLQxixGd88KE?utm_source=generator", height = "100")
-```
+
 ### AKB48
 Lastly, we have the biggest pop group in the world <i>AKB48</i>. The group currently consists of 80 members divided over 5 teams. The group has been active since 2005 and produced 59 singles, giving them over 60 million claimed record sales.
 
 <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evNZWreOe?utm_source=generator" height="155" width="400" style="border: 0px solid #464646;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
-```{r, out.width = "100%"}
-#knitr::include_url("https://open.spotify.com/embed/track/37yHxMij3cpN8SdO915LUI?utm_source=generator", height = "100")
-```
-Background {data-orientation=rows}
+
+Background {data-orientation=rows data-icon="fa-info"}
 =========================================================
 
 Row {Data-height = 350}
@@ -172,13 +123,13 @@ knitr::kable(best_selling)
 ```
 
 ### Popularity of the songs
-A popular group does not automatically mean that all their songs are popular as well. It is often the case that the group has one especially popular song, whereas the rest are not as popular. For instance, 'Wannabe' by the *Spice Girls* is the best-selling girl group single, so this presumably is a big reason why the group is the best-selling girl group as well. In this portfolio, I have therefore chosen to focus on the most popular song of each group. The analysis of these songs can be found under "Biggest Hits" and the analysis of the full playlists per group can be found under "Full Repertoire". The most popular song is based on Spotify's track popularity. The values can be found in the table below, but keep in mind that the values should only be compared between songs of one group. Since, for instance, *The Supremes* was popular when Spotify was not even invented, which may influence the track popularity.
+A popular group does not automatically mean that all their songs are popular as well. It is often the case that the group has one especially popular song, whereas the rest are not as popular. For instance, 'Wannabe' by the *Spice Girls* is the best-selling girl group single of all times, so this is presumably a main reason for the group's popularity as well. In this portfolio, I have therefore chosen to focus on the most popular song of each group. The analysis of these songs can be found under "Biggest Hits" and the analysis of the full playlists per group can be found under "Full Repertoire". The most popular song is based on Spotify's track popularity. The values, with a comparison to the least popular songs, can be found in the table below, but keep in mind that the values should only be compared between songs of one group. Since, for instance, *The Supremes* was popular when Spotify was not even invented, which may influence the track popularity.
 
 **Most and least popular songs**
 
 ```{r}
 songs <- matrix(c('Wannabe', 77, 'A Mind Of Its Own', 26, "You Can't Hurry Love", 71,
-'Let Me Go The Right Way', 16, 'I Am The Best', 62, 'LIKE A VIRGIN', 24, '恋するフォーチュンクッキー', 46, 'ハート型ウイルス(TeamA)', 26), ncol=4, byrow=TRUE)
+'Let Me Go The Right Way', 16, 'I Am The Best', 62, 'LIKE A VIRGIN', 24, '恋するフォーチュンクッキー', 46, 'ハート型ウイルス', 26), ncol=4, byrow=TRUE)
 
 #define column names and row names of matrix
 colnames(songs) <- c('Most popular', 'Popularity', 'Least popular', 'Popularity')
@@ -190,14 +141,84 @@ songs <- as.table(songs)
 knitr::kable(songs)
 ```
 
-Girl Groups Prefer Songs With Positive Energy {data-navmenu="Full Repertoire"}
+General Similarities {data-navmenu="Full Repertoire" data-orientation=rows data-icon="fa-list"}
 =========================================================
 
 Column {.sidebar data-width=500}
 ------------------------------------------------------------
-<font style = "font-size: 20px"><b>The different moods of the songs</b></font>
+<font style = "font-size: 28px"><b>General Similarities</b></font>
 
-*The graph on the right displays the valence, energy and danceability of the songs from the four girl groups. By combining valence and energy one can get an indication of the mood that is evoked by the song. Furthermore, the size shows the danceability. Since K-pop and J-pop are well known for their choreography, it could be interesting to see whether there is a correlation between energy and danceability.*
+On this page, all songs have been clustered to see how distinctive the groups are in general terms. The clustering is based on danceability, energy, loudness, valence, tempo, duration, pitch and the mel-frequency cepstral coefficients. Furthermore, complete linkage has been used. Ideally, we would want four clusters, one for each group. However, the dendrogram on the right has been split at height 11 to get 8 branches. This has been done to account for some outliers and for readability. Lastly, no distinction has been made between the specific songs, since we only look at the groups in general.
+
+The main tab shows the general layout of the dendrogram with the 8 branches. The first and sixth branch contain the least cohesiveness. However, when looking at the lowest level, more often than not songs from the same group have been clustered together. The second branch has been clearly dominated by *The Supremes*, but the songs from *2NE1* and *Spice Girls* are grouped together as well. The same holds for the third and fourth branch, where *AKB48* is the dominating group. The fifth and seventh branch contain some outliers. Lastly, the eighth branch is almost equally divided between *AKB48* and *Spice Girls*.
+
+Thus, the four groups are not distinctive enough to divide them into four clusters. Nonetheless, on a lower level it can definitely be seen that songs from one group can often be found in the same branch, indicating some cohesiveness within each group.
+
+Row {.tabset}
+-------------------------------------------------------
+
+### Main Tree
+```{r, echo=FALSE, fig.width=14, fig.height=7}
+upper <- plot(cut(hcd, h=11)$upper, 
+     main="Upper tree cut at height 11")
+```
+
+### Branch 1
+```{r, echo=FALSE, fig.width=14, fig.height=7}
+lower <- plot(cut(hcd, h=11)$lower[[1]], 
+     main="First branch of lower tree with cut at 11")
+```
+
+### Branch 2
+```{r, echo=FALSE, fig.width=14, fig.height=7}
+lower <- plot(cut(hcd, h=11)$lower[[2]], 
+     main="Second branch of lower tree with cut at 11")
+```
+
+### Branch 3
+```{r, echo=FALSE, fig.width=14, fig.height=7}
+lower <- plot(cut(hcd, h=11)$lower[[3]], 
+     main="Third branch of lower tree with cut at 11")
+```
+
+### Branch 4
+```{r, echo=FALSE, fig.width=14, fig.height=7}
+lower <- plot(cut(hcd, h=11)$lower[[4]], 
+     main="Fourth branch of lower tree with cut at 11")
+```
+
+### Branch 5
+```{r, echo=FALSE, fig.width=14, fig.height=7}
+lower <- plot(cut(hcd, h=11)$lower[[5]], 
+     main="Fifth branch of lower tree with cut at 11")
+```
+
+### Branch 6
+```{r, echo=FALSE, fig.width=14, fig.height=7}
+lower <- plot(cut(hcd, h=11)$lower[[6]], 
+     main="Sixth branch of lower tree with cut at 11")
+```
+
+### Branch 7
+```{r, echo=FALSE, fig.width=14, fig.height=7}
+lower <- plot(cut(hcd, h=11)$lower[[7]], 
+     main="Seventh branch of lower tree with cut at 11")
+```
+
+### Branch 8
+```{r, echo=FALSE, fig.width=14, fig.height=7}
+lower <- plot(cut(hcd, h=11)$lower[[8]], 
+              main="Eighth branch of lower tree with cut at 22")
+```
+
+Group Moods {data-navmenu="Full Repertoire" data-icon="fa-list"}
+=========================================================
+
+Column {.sidebar data-width=500}
+------------------------------------------------------------
+<font style = "font-size: 28px"><b>Group Moods</b></font>
+
+The graph on the right displays the valence, energy and danceability of the songs from the four girl groups. By combining valence and energy one can get an indication of the mood that is evoked by the song. Furthermore, the size shows the danceability. Since K-pop and J-pop are well known for their choreography, it could be interesting to see whether there is a correlation between energy and danceability.
 
 In general, most of the songs from the four girl groups evoke positive energy since they have a high valence and energy (> 0.5). For the *Spice Girls* and *The Supremes* the energy is mid-high, whereas the Asian songs have a really high energy level. Although one might expect that the high energy is due to the fact that K-pop and J-pop involve a lot of dancing, the danceability does not particularly become evident from the graph; there are quite some songs with high energy and low danceability. Furthermore, the *Spice Girls* seems to have the highest danceability overall. <br>
 Apart from *AKB48*, the songs range over the complete valence spectrum. This means that the moods can be anything from happy/excited (high valence) to angry/afraid/distressed (low valence) to content (mid valence). *AKB48*'s songs do not have a very high or low valence, except for one outlier. This song, "Liwake Maybe", has a very low valence, very high energy and quite a low danceability. Therefore, this song is presumably sad or angry.
@@ -207,16 +228,15 @@ Column
 
 ### Valance, Energy and Danceability as Mood Indicator
 ```{r scatter, echo=FALSE, fig.width=12.5, fig.height=2}
-source('first_visualisation.R')
 fig
 ```
 
-Key Histograms {data-navmenu="Full Repertoire" data-orientation=rows}
+Group Emotions {data-navmenu="Full Repertoire" data-orientation=rows data-icon="fa-list"}
 ==================================================================
 
 Column {.sidebar data-width=400}
 --------------------------------------------------------
-<font style = "font-size: 28px"><b>Key Histograms</b></font>
+<font style = "font-size: 28px"><b>Group Emotions</b></font>
 
 The histograms on the right show the number of key occurrences of all songs per group. Each song has been split in roughly ten time frames. Per time frame, the most prominent key has been chosen. This has been determined by using the Manhattan normalisation with the Aitchison distance in combination with the mean. However, it is important to keep in mind that Spotify's analysis may not always be accurate.
 
@@ -228,25 +248,21 @@ Row {.tabset data-height=700}
 -------------------------------------------------------
 ### *Spice Girls* Key Histogram
 ```{r, echo = FALSE, fig.width=10, fig.height=4.5}
-source('keygrams.R')
 SpiceGirls_keys
 ```
 
 ### *The Supremes* Key Histogram
 ```{r, echo = FALSE, fig.width=10, fig.height=4.5}
-source('keygrams.R')
 TheSupremes_keys
 ```
 
 ### *2NE1* Key Histogram
 ```{r, echo = FALSE, fig.width=10, fig.height=4.5}
-source('keygrams.R')
 twoNE1_keys
 ```
 
 ### *AKB48* Key Histogram
 ```{r, echo = FALSE, fig.width=10, fig.height=4.5}
-source('keygrams.R')
 AKB48_keys
 ```
 
@@ -256,7 +272,7 @@ Row {.tabset}
 The minor keys have almost no place in the songs from the four girl groups. This means that their songs mostly evoke positive energy. Furthermore, the D-major and Eb-major are very prominent in all playlists. These two keys have *'Triumphant, Victorious War-Cries'* and *'Cruel, Hard, Yet Full of Devotion'*, respectively as emotive expressions. The emotions of D-major seem to correspond with the high valence, high energy found in the mood indicator graph and the Eb-major key corresponds with the mid-valence, high energy results.
 
 ### *Spice Girls* Evaluation
-In the 'This is Spice Girls' playlist, almost all major keys occur more often than the minor keys. In general, the major keys evoke positive emotions. The most dominant key is the D-major key, closely followed by Eb-major. The D-major key's emotive expression is *'Triumphant, Victorious War-Cries'* and Eb-major's emotive expressions consists of *'Cruel, Hard, Yet Full of Devotion'*. This suggests powerful messages with a happy tone.
+In the 'This is Spice Girls' playlist, almost all major keys occur more often than the minor keys. In general, the major keys evoke positive emotions. The most dominant key is the D-major key, closely followed by Eb-major. The D-major key's emotive expression is *'Triumphant, Victorious War-Cries'* and Eb-major's emotive expression consists of *'Cruel, Hard, Yet Full of Devotion'*. This suggests powerful messages with a happy tone.
 
 ### *The Supremes* Evaluation
 In the songs of *The Supremes* major keys are clearly preferred over minor keys, with B-major being the absolute winner. This key has the following emotive expressions: *'Harsh, Strong, Wild, Rage'*. This may be considered as low valence, high energy in the mood indicator graph.
@@ -267,78 +283,14 @@ In the songs of *The Supremes* major keys are clearly preferred over minor keys,
 ### *AKB48* Evaluation
 In the 'This is AKB48' playlist, the winner is the Eb-major key, followed by the Bb-major, B-major and D-major keys. The Eb-major key expresses *'Cruel, Hard, Yet Full of Devotion'*. This may correspond with mid-valence, high energy in the mood indicator graph.
 
-<!-- Tempo {data-navmenu="Full Repertoire" data-orientation=rows} -->
-<!-- ========================================================= -->
-
-<!-- Column {.sidebar data-width=400} -->
-<!-- ------------------------------------------------------------ -->
-<!-- <font style = "font-size: 20px"><b>Tempo</b></font> -->
-
-<!-- Row -->
-<!-- -------------------------------------------------------------- -->
-<!-- ### Tempo Distribution of the Songs -->
-<!-- ```{r, echo=FALSE, fig.width=12.5, fig.height=3} -->
-<!-- source('first_visualisation.R') -->
-<!-- tempo_plot -->
-<!-- ``` -->
-
-<!-- Row -->
-<!-- --------------------------------------------------------------- -->
-<!-- There will come an evaluation here. -->
-<!-- ### Spice Girls -->
-<!-- ```{r, echo=FALSE, fig.width=5, fig.height=3} -->
-<!-- source('first_visualisation.R') -->
-<!-- sg_mode -->
-<!-- ``` -->
-
-<!-- ### The Supremes -->
-<!-- ```{r, echo=FALSE, fig.width=5, fig.height=3} -->
-<!-- source('first_visualisation.R') -->
-<!-- ts_mode -->
-<!-- ``` -->
-
-<!-- Row -->
-<!-- ----------------------------------------------------------------- -->
-
-<!-- ### 2NE1 -->
-<!-- ```{r, echo=FALSE, fig.width=5, fig.height=3} -->
-<!-- source('first_visualisation.R') -->
-<!-- ne_mode -->
-<!-- ``` -->
-
-<!-- ### AKB48 -->
-<!-- ```{r, echo=FALSE, fig.width=5, fig.height=3} -->
-<!-- source('first_visualisation.R') -->
-<!-- ak_mode -->
-<!-- ``` -->
-
-
-<!-- DTW {data-navmenu="Biggest Hits"} -->
-<!-- ======================================================== -->
-
-<!-- Column  -->
-<!-- -------------------------------------------------------- -->
-<!-- <font style = "font-size: 24px"><b>Similarity between different versions</b></font> -->
-
-<!-- <i>Do you ever prefer the remix of your favorite song over the original? Or maybe you like how the emotions of the singer are more clear in an acoustic version? But how different are such remakes from the original? On the right, we compare an original song with its orchestral counterpart. </i> -->
-
-<!-- When an artist or song is very popular, they often remake their song with another artist or turn into an acoustic version or sometimes even a remix. The same goes for The Supremes with their song 'I hear a symphony'. The Supremes have re-recorded this song with the Royal Philharmonic Orchestra, turning it into an orchestral version. In the Dynamic Time Warping graph on the right, the similarity between the two versions can be seen. There is an almost perfect straight line from the left bottom to top right, this means that the different versions are actually really close to each other. -->
-
-<!-- Column {data-width=400} -->
-<!-- ------------------------------------------------------------------------ -->
-<!-- ```{r, echo = FALSE, fig.width=7, fig.height=5.5} -->
-<!-- source('DynamicTimeWarpingGraph.R') -->
-<!-- DTW -->
-<!-- ``` -->
-
-Chroma and timbre {data-navmenu="Biggest Hits" data-orientation=rows}
+Structure of Hit Songs {data-navmenu="Biggest Hits" data-orientation=rows data-icon="fa-list"}
 ========================================================
 
 Column {.sidebar data-width=400}
 --------------------------------------------------------
-<font style = "font-size: 28px"><b>Chroma and timbre</b></font>
+<font style = "font-size: 28px"><b>Structure of Hit Songs</b></font>
 
-On the right, the chroma and timbre of the most popular song from each group are shown in the form of a self-similarity matrices. <br>
+On the right, the chroma and timbre of the most popular song from each group are shown in the form of self-similarity matrices. <br>
 The four songs are:
 
 * ['Wannabe' - *Spice Girls*](https://open.spotify.com/track/1Je1IMUlBXcx1Fz0WE7oPT?si=309c00c5834546eb)
@@ -378,20 +330,137 @@ Row {.tabset data-height=300}
 In general, it is interesting to see that the songs from the US and the UK are both a little under three minutes and have a clear start of the bridge at around two minutes. An interesting contradiction is that 'You can't hurry love' is quite homogeneous, whereas the Korean song has a lot of 'new' parts. Furthermore, the song by AKB48 has the clearest repetitions of the chorus but 'Wannabe' seems to have a lot of really small repetitions.
 
 ### 'Wannabe' Evaluation
-In the chroma matrix the structure of the song can roughly be seen. When listening to the song you can follow along and find the couplets and chorus. However, there are no very clear repetition in the matrix that you may expect when listening to the song. In the timbre matrix there is one yellow line that stands out at around two minutes. When listening to the song it becomes clear that this is the very short part where there is no background music. Lastly, at the end you can also see some a bit thicker yellowish line. This is the outro of the song that is just instrumental.
+In the chroma matrix the structure of the song can roughly be seen. When listening to the song you can follow along and find the couplets and chorus. However, there are no very clear repetitions in the matrix that you may expect when listening to the song. In the timbre matrix there is one yellow line that stands out at around two minutes. When listening to the song it becomes clear that this is the very short part where there is no background music. Lastly, at the end you can also see a thick yellowish line. This is the instrumental outro of the song.
 
 ### 'You can't hurry love' Evaluation
-Surprisingly, the repetition of the chorus is not as clear in the chroma matrix, although this sounds the same for a listener. A more clear repetition is visible between 35-60 s and 75-100 s. This period indicates the second part of the chorus. This is also quite unexpected since the rhythm stays the same but the lyrics change and still this is more visible than the chorus which is exactly the same every time. In the timbre matrix a yellow line can be seen at around two minutes, this indicates novelty. In this case, the novelty comes from the transition to the bridge, where a clear distinction in the music can be heard as well. However, after the bridge the song ends quite homogeneous.
+Surprisingly, although repetitions of the chorus are very clear for listeners, this is not as evident in the chroma matrix. A more clear repetition is visible between 35-60s and 75-100s. This period indicates the second part of the chorus. This is also quite unexpected since the rhythm stays the same but the lyrics change and still this is more visible than the chorus which is exactly the same every time. In the timbre matrix a yellow line can be seen at around two minutes, this indicates novelty. In this case, the novelty comes from the transition to the bridge, where a clear distinction in the music can be heard as well. However, after the bridge the song ends quite homogeneous.
 
 ### 'I am the best' Evaluation
-In the chroma matrix there is not a clear checkerboard pattern that indicates the structure, there is not a lot of homogeneity. This is further confirmed by looking at the timbre matrix. As can be seen there, this song has a lot of novelty. Even when the lyrics are repeated, the background music changes which makes it seem as completely different according to the graph. Furthermore, there are big contrasts between some parts. For instance, the part between 70s and 80s is quite different from the parts before and after that.
+In the chroma matrix there is not a clear checkerboard pattern that indicates the structure; there is not a lot of homogeneity. This is further confirmed by looking at the timbre matrix. As can be seen there, this song has a lot of novelty. Even when the lyrics are repeated, the background music changes which makes it seem as completely different according to the matrix. Furthermore, there are big contrasts between some parts. For instance, the part between 70s and 80s is quite different from the parts before and after that.
 
 ### '恋するフォーチュンクッキー' Evaluation
-For this song, the chroma and timbre matrices are very similar. The chorus and pre-chorus can be easily found, around 60s and 150s is the pre-chorus and 75-120s, 165-210s and 220-265s indicate the chorus. The yellow lines that indicate 'novelty' are almost everytime a musical part.
+For this song, the chroma and timbre matrices are very similar. The chorus and pre-chorus can be easily found, around 60s and 150s is the pre-chorus and 75-120s, 165-210s and 220-265s indicate the chorus. The yellow lines that indicate 'novelty' are almost everytime an instrumental part.
 
-Conclusion
+Tempo {data-navmenu="Biggest Hits" data-orientation=rows data-icon="fa-list"}
+========================================================
+
+Column {.sidebar data-width=350}
+--------------------------------------------------------
+<font style = "font-size: 28px"><b>Tempo</b></font>
+
+On this tab, the "biggest hits" of each group are compared to their corresponding full playlists. In this way, not only can we learn about the tempi of the song but also find out how representative the "biggest hit" is for that group in terms of tempo. On the left, a histogram of the tempi in the playlist is shown. This histogram has a binwidth of 15. On the right, the cyclic tempogram of the "biggest hit" is displayed. In the tempogram, the yellow line(s) indicates the tempo during that song. <br>
+
+<i>Make sure to match the graphs with the evaluations by choosing the correct tab.</i>
+
+Row {.tabset data-height=700}
+------------------------------------------------------------------
+### *Spice Girls* - 'Wannabe'
+```{r, echo = FALSE, fig.width=10, fig.height=4.5}
+spicegirls_tempo
+```
+
+### *The Supremes* - 'You can't hurry love'
+```{r, echo = FALSE, fig.width=10, fig.height=4.5}
+TheSupremes_tempo
+```
+
+### *2NE1* - 'I am the best'
+```{r, echo = FALSE, fig.width=10, fig.height=4.5}
+twoNE1_tempo
+```
+
+### *AKB48* - '恋するフォーチュンクッキー'
+```{r, echo = FALSE, fig.width=10, fig.height=4.5}
+AK_tempo
+```
+
+Row {.tabset data-height=300}
+------------------------------------------------------------------
+### General Evaluation
+In general, we can see an upgoing trend in terms of the overall tempo of the playlists; *Spice Girls* is centered around 100 bpm, *The Supremes* and *2NE1* songs mostly fall between 110 and 140 bpm and *AKB48* is more widespread but peaks at 160 bpm. Furthermore, all the biggest hits have one consistent tempo throughout the whole song that falls within the margin of the playlist. Therefore, the biggest hits are quite representative for the group in terms of tempo, since they do not differ greatly from the other songs in the playlists. 
+
+### *Spice Girls* Evaluation
+From the tempogram, it is quite evident that 'Wannabe' has a tempo of around 110 bpm throughout the whole song. There are no changes in tempo, since there is just a straight horizontal line. From the tempo histogram, it appears that the highest peak is around 100-110 bpm as well. This means that roughly a third (13 out of 42) of the songs fall in this category, including 'Wannabe'. Furthermore, most other songs are in the surrounding bins. Therefore, the biggest hit 'Wannabe' is not unique in terms of the tempo for *Spice Girls*.
+
+### *The Supremes* Evaluation
+The tempo histogram has two clear peaks, showing that 16 out of 50 songs from *The Supremes* have a bpm of about 120 and 12 songs have a bpm of about 130. From this place songs are more likely to have a lower tempo, making the 130 also the highest common value. The tempogram shows that 'You can't hurry love' falls on the lower side of the spectrum with a bpm of about 95 throughout the whole song. Although this does not fall within the most common margin, it is still quite a representative value for the complete playlist. However, what is interesting is the vague yellow line at about 145 bpm in the tempogram. This indicates that a higher bpm has been detected.
+
+### *2NE1* Evaluation
+This histogram has two extreme peaks that form into one very clear peak. This peak contains two thirds (24/36) of the songs from the playlist. The peaks cover a range from 110 to 140 bpm. The tempogram shows that *2NE1*'s "biggest hit" also falls within this margin, with a constant tempo of 130 bpm. Therefore, this song represents the high-tempo playlist quite well.
+
+### *AKB48* Evaluation
+The histogram has three distinct peaks (100-115 bpm, 130-145 bpm, 160-175 bpm) with increasing values: the first peak consists of 6 songs, the middle peak shows 10 songs and the last peak corresponds with 13 songs. However, from the tempogram, it appears that the biggest hit does not fall within one of these peaks with a tempo of just over 120 bpm. Therefore, this song does not seem super representative for the playlist. Nonetheless, since it falls between two peaks it is actually not that far off, since a higher binwidth would have made it an element of a peak.
+
+Structure by Frequency {data-navmenu="Biggest Hits" data-orientation=rows data-icon="fa-list"}
+========================================================
+
+Column {.sidebar data-width=400}
+--------------------------------------------------------
+<font style = "font-size: 28px"><b>Structure by Frequency</b></font>
+
+On the right, the cepstrograms of the most popular song from each group are shown. A cepstrograms displays the mel-frequency cepstral coefficients. These coefficients, however, do not always have a clear interpretation. Here, we assume the first coefficient to indicate loudness, the second to indicate the energy in the lower frequencies and the third to indicate the energy in the mid frequencies. The other coefficients are left open for specific interpretation but can be used when looking at the general structure of the songs.
+
+For the cepstrograms, Euclidean normalisation with the root square mean was used. The brighter the colour, the higher the magnitude.
+
+<i>Make sure to match the graphs with the evaluations by choosing the correct tab.</i>
+
+Row {.tabset data-height=700}
+------------------------------------------------------------------
+### 'Wannabe' - *Spice Girls*
+```{r, echo = FALSE, fig.width=9, fig.height=4.5}
+wannabe_cepstrogram
+```
+
+### 'You can't hurry love' - *The Supremes*
+```{r, echo = FALSE, fig.width=9, fig.height=4.5}
+Canthurrylove_cepstrogram
+```
+
+### 'I am the best' - *2NE1*
+```{r, echo = FALSE, fig.width=9, fig.height=4.5}
+Iamthebest_cepstrogram
+```
+
+### '恋するフォーチュンクッキー' - *AKB48*
+```{r, echo = FALSE, fig.width=9, fig.height=4.5}
+japanese_cepstrogram
+```
+
+Row {.tabset data-height=300}
+------------------------------------------------------------------
+### General Evaluation
+In general, it seems that the songs roughly have a higher magnitude for the first few coefficients, and lower for the last coefficients. Moreover, *AKB48* seems to have the highest loudness in their song, followed by *Spice Girls*, *2NE1* and *The Supremes*, respectively. Lastly, apart from a few simple things it is actually quite hard to find any clear structures in the cepstrograms.
+
+### 'Wannabe' Evaluation
+This cepstrogram shows quite a smooth transition from high magnitudes in the first coefficients to low magnitudes in the last coefficients. The loudness is quite high and consistent throughout the whole song, apart from the first few seconds which is due to the fact that the track starts with some footsteps and laughter before the music actually kicks in. 
+
+### 'You can't hurry love' Evaluation
+In this cepstrogram, we can again see that the loudness at the first few seconds of the songs is lower due to a slow start of the song. Furthermore, it is very clear that only the second coefficient has a remarkably high magnitude. Although it is difficult to see what the exact reason for this is, it may be mostly due to the background music.
+
+### 'I am the best' Evaluation
+The cepstrogram shows a semi-high constant loudness level. What is more interesting, is the second coefficient which has a high magnitude with some gaps. These gaps seems to be due to moments where the background music is less/not prevalent. c06 and c11 also have a relatively high magnitude with some gaps, but the reason for these gaps does not become clear from listening to the song.
+
+### '恋するフォーチュンクッキー' Evaluation
+The first three coefficients in this cepstrogram have a high magnitude. This does seem to correspond with what one hears. To elaborate, the song has quite a homogeneous structure and feeling. This makes it difficult to find any peculiarities that explain the cepstrogram. 
+
+Conclusion {data-icon="fa-lightbulb"}
 ============================================================
 Column
 --------------------------------------------------------
 
-Here I'll draw the general and final conclusions about what makes a girl group popular based on the graphs in the other tabs.
+### Summary
+In this portfolio, we looked at the differences and similarities between four of the best-selling girl groups around the world. This was done in order to answer the question: "What is the secret of a popular girl group?"
+
+Based on the full playlists, the dendrogram showed that there are some general features that roughly distinguishes the groups from one another. The scatter plot showed that all groups mostly provoke positive energy, whereby the energy levels of the Japanese and Korean group are especially high. This is further confirmed by the key histograms that show that most songs are written in a major key, which corresponds to positiveness as well.
+
+On a track level, it seemed that the biggest hit of *Spice Girls* and *The Supremes* have a little more structure than the biggest hit of the other groups. Furthermore, the tempograms along with the bar plot showed that the biggest hits might actually be quite representative for the groups overall repertoire. Moreover, it showed that *AKB48* has the highest BPM followed by *2NE1*, *The Supremes* and lastly *Spice Girls*. Finally, the loudness of all four songs is relatively high compared to the other coefficients that were shown in the cepstrograms.
+
+Column
+--------------------------------------------------------
+
+### Conclusion
+In general, it seems that in order to be a popular girl group one should mostly have songs that evoke positive emotions with a high and positive energy. Nonetheless, there are also a lot of differences between the four studied groups. The Asian groups have a little more similarities with each other than to the Western groups, and vice versa. These similarities, however, are not extremely prevalent.
+
+Some things to take into account are the fact that this is only based on four girl groups therefore, although it does give an indication, the result may not be generalisable to all girl groups around the world. To explain, the popularity of a group presumably also depends to some extent on cultural preferences. Furthermore, the chosen groups were all mostly active quite some time ago. Therefore, there were less groups, which made the groups more likely to sell a lot of records since there was less competition. Nowadays, however, people are in general less interested in buying actual records and there attention is often also spread across multiple groups. Lastly, popularity may not solely be based on the songs of the groups. For instance, many K-pop groups gain popularity due to their 'visuals' and choreography.
+
+Despite the fact that it may not be the most representative corpus, all groups were still once popular. Therefore, it is more or less safe to say that the secret of a popular girl group is mostly positive energy!
